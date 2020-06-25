@@ -1,7 +1,7 @@
 ﻿SET NAMES utf8mb4;
 SET FOREIGN_KEY_CHECKS = 0;
 
-DROP TABLE IF EXISTS `tb_nwpu_market_admin_user`;--’管理员-表’
+DROP TABLE IF EXISTS `tb_nwpu_market_admin_user`;-- ’管理员-表’
 CREATE TABLE `tb_nwpu_market_admin_user`  (
   `admin_user_id` int(11) NOT NULL AUTO_INCREMENT COMMENT '管理员id',
   `login_user_name` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '管理员登陆名称',
@@ -11,7 +11,7 @@ CREATE TABLE `tb_nwpu_market_admin_user`  (
   PRIMARY KEY (`admin_user_id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
-DROP TABLE IF EXISTS `tb_nwpu_market_carousel`;--’轮播图-表’
+DROP TABLE IF EXISTS `tb_nwpu_market_carousel`;-- ’轮播图-表’
 CREATE TABLE `tb_nwpu_market_carousel`  (
   `carousel_id` int(11) NOT NULL AUTO_INCREMENT COMMENT '首页轮播图主键id',
   `carousel_url` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT '轮播图',
@@ -25,7 +25,7 @@ CREATE TABLE `tb_nwpu_market_carousel`  (
   PRIMARY KEY (`carousel_id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 8 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
-DROP TABLE IF EXISTS `tb_nwpu_market_goods_category`;--’商品种类-表’
+DROP TABLE IF EXISTS `tb_nwpu_market_goods_category`;-- ’商品种类-表’
 CREATE TABLE `tb_nwpu_market_goods_category`  (
   `category_id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '分类id',
   `category_level` tinyint(4) NOT NULL DEFAULT 0 COMMENT '分类级别(1-一级分类 2-二级分类 3-三级分类)',
@@ -40,7 +40,7 @@ CREATE TABLE `tb_nwpu_market_goods_category`  (
   PRIMARY KEY (`category_id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 107 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
-DROP TABLE IF EXISTS `tb_nwpu_market_goods_info`;--’商品信息-表’
+DROP TABLE IF EXISTS `tb_nwpu_market_goods_info`;-- ’商品信息-表’
 CREATE TABLE `tb_nwpu_market_goods_info`  (
   `goods_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '商品表主键id',
   `goods_name` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT '商品名',
@@ -61,7 +61,7 @@ CREATE TABLE `tb_nwpu_market_goods_info`  (
   PRIMARY KEY (`goods_id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 10896 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
-DROP TABLE IF EXISTS `tb_nwpu_market_index_config`;--’主页设置-表’
+DROP TABLE IF EXISTS `tb_nwpu_market_index_config`;-- ’主页设置-表’
 CREATE TABLE `tb_nwpu_market_index_config`  (
   `config_id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '首页配置项主键id',
   `config_name` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT '显示字符(配置搜索时不可为空，其他可为空)',
@@ -77,7 +77,7 @@ CREATE TABLE `tb_nwpu_market_index_config`  (
   PRIMARY KEY (`config_id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 25 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
-DROP TABLE IF EXISTS `tb_nwpu_market_order`;--’订单-表’
+DROP TABLE IF EXISTS `tb_nwpu_market_order`;-- ’订单-表’
 CREATE TABLE `tb_nwpu_market_order`  (
   `order_id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '订单表主键id',
   `order_no` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT '订单号',
@@ -97,7 +97,7 @@ CREATE TABLE `tb_nwpu_market_order`  (
   PRIMARY KEY (`order_id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 21 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
-DROP TABLE IF EXISTS `tb_nwpu_market_order_item`;--’订单内容-表’
+DROP TABLE IF EXISTS `tb_nwpu_market_order_item`;-- ’订单内容-表’
 CREATE TABLE `tb_nwpu_market_order_item`  (
   `order_item_id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '订单关联购物项主键id',
   `order_id` bigint(20) NOT NULL DEFAULT 0 COMMENT '订单主键id',
@@ -110,7 +110,7 @@ CREATE TABLE `tb_nwpu_market_order_item`  (
   PRIMARY KEY (`order_item_id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 35 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
-DROP TABLE IF EXISTS `tb_nwpu_market_shopping_cart_item`;--’购物车-表’
+DROP TABLE IF EXISTS `tb_nwpu_market_shopping_cart_item`;-- ’购物车-表’
 CREATE TABLE `tb_nwpu_market_shopping_cart_item`  (
   `cart_item_id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '购物项主键id',
   `user_id` bigint(20) NOT NULL COMMENT '用户主键id',
@@ -122,7 +122,7 @@ CREATE TABLE `tb_nwpu_market_shopping_cart_item`  (
   PRIMARY KEY (`cart_item_id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 69 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
-DROP TABLE IF EXISTS `tb_nwpu_market_user`;--’用户-表’
+DROP TABLE IF EXISTS `tb_nwpu_market_user`;-- ’用户-表’
 CREATE TABLE `tb_nwpu_market_user`  (
   `user_id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '用户主键id',
   `nick_name` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT '用户昵称',
