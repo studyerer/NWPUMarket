@@ -19,3 +19,4 @@
   *重新安装idea
 * Git clone clone unable to access
   * 在clone之前加git config --system http.sslverify false
+  df
