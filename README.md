@@ -15,3 +15,7 @@
   * 自己百度
 * Git克隆到本地以后怎么办？
   * 先自己修改一个地方，然后push一下，会出现登录窗口，使用自己的gitee账号登录即可。
+* 遇到vcs一直刷新怎么办？
+  *重新安装idea
+* Git clone clone unable to access
+  * 在clone之前加git config --system http.sslverify false
