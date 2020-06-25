@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="edu.nwpu.market.dao.NewBeeMallGoodsMapper">
-    <resultMap id="BaseResultMap" type="edu.nwpu.market.entity.NewBeeMallGoods">
+    <resultMap id="BaseResultMap" type="edu.nwpu.market.entity.NWPUMarketGoods">
         <id column="goods_id" jdbcType="BIGINT" property="goodsId"/>
         <result column="goods_name" jdbcType="VARCHAR" property="goodsName"/>
         <result column="goods_intro" jdbcType="VARCHAR" property="goodsIntro"/>
@@ -18,7 +18,7 @@
         <result column="update_user" jdbcType="INTEGER" property="updateUser"/>
         <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
     </resultMap>
-    <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="edu.nwpu.market.entity.NewBeeMallGoods">
+    <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="edu.nwpu.market.entity.NWPUMarketGoods">
         <result column="goods_detail_content" jdbcType="LONGVARCHAR" property="goodsDetailContent"/>
     </resultMap>
     <sql id="Base_Column_List">
@@ -171,7 +171,7 @@
     delete from tb_nwpu_market_goods_info
     where goods_id = #{goodsId,jdbcType=BIGINT}
   </delete>
-    <insert id="insert" parameterType="edu.nwpu.market.entity.NewBeeMallGoods">
+    <insert id="insert" parameterType="edu.nwpu.market.entity.NWPUMarketGoods">
     insert into tb_nwpu_market_goods_info (goods_id, goods_name, goods_intro, 
       goods_cover_img, goods_carousel, original_price, 
       selling_price, stock_num, tag, 
@@ -185,7 +185,7 @@
       #{updateUser,jdbcType=INTEGER}, #{updateTime,jdbcType=TIMESTAMP}, #{goodsDetailContent,jdbcType=LONGVARCHAR}
       )
   </insert>
-    <insert id="insertSelective" parameterType="edu.nwpu.market.entity.NewBeeMallGoods">
+    <insert id="insertSelective" parameterType="edu.nwpu.market.entity.NWPUMarketGoods">
         insert into tb_nwpu_market_goods_info
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="goodsId != null">
@@ -288,7 +288,7 @@
             </if>
         </trim>
     </insert>
-    <update id="updateByPrimaryKeySelective" parameterType="edu.nwpu.market.entity.NewBeeMallGoods">
+    <update id="updateByPrimaryKeySelective" parameterType="edu.nwpu.market.entity.NWPUMarketGoods">
         update tb_nwpu_market_goods_info
         <set>
             <if test="goodsName != null">
@@ -339,7 +339,7 @@
         </set>
         where goods_id = #{goodsId,jdbcType=BIGINT}
     </update>
-    <update id="updateByPrimaryKeyWithBLOBs" parameterType="edu.nwpu.market.entity.NewBeeMallGoods">
+    <update id="updateByPrimaryKeyWithBLOBs" parameterType="edu.nwpu.market.entity.NWPUMarketGoods">
     update tb_nwpu_market_goods_info
     set goods_name = #{goodsName,jdbcType=VARCHAR},
       goods_intro = #{goodsIntro,jdbcType=VARCHAR},
@@ -357,7 +357,7 @@
       goods_detail_content = #{goodsDetailContent,jdbcType=LONGVARCHAR}
     where goods_id = #{goodsId,jdbcType=BIGINT}
   </update>
-    <update id="updateByPrimaryKey" parameterType="edu.nwpu.market.entity.NewBeeMallGoods">
+    <update id="updateByPrimaryKey" parameterType="edu.nwpu.market.entity.NWPUMarketGoods">
     update tb_nwpu_market_goods_info
     set goods_name = #{goodsName,jdbcType=VARCHAR},
       goods_intro = #{goodsIntro,jdbcType=VARCHAR},
