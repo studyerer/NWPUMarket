@@ -1,5 +1,5 @@
-﻿SET NAMES utf8mb4;
-SET FOREIGN_KEY_CHECKS = 0;
+CREATE SCHEMA `nwpu_markt_db` ;
+USE `nwpu_markt_db` ;
 
 DROP TABLE IF EXISTS `tb_nwpu_market_admin_user`;-- ’管理员-表’
 CREATE TABLE `tb_nwpu_market_admin_user`  (
