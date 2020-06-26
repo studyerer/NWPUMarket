@@ -22,9 +22,9 @@ import java.util.Map;
 public class GoodsController {
 
     @Resource
-    private NWPUMarketGoodsService newBeeMallGoodsService;
+    private NWPUMarketGoodsService nwpuMarketGoodsService;
     @Resource
-    private NWPUMarketCategoryService newBeeMallCategoryService;
+    private NWPUMarketCategoryService nwpuMarketCategoryService;
 
     @GetMapping({"/search", "/search.html"})
     public String searchPage(@RequestParam Map<String, Object> params, HttpServletRequest request) {
@@ -35,7 +35,7 @@ public class GoodsController {
         //封装分类数据
         if (params.containsKey("goodsCategoryId") && !StringUtils.isEmpty(params.get("goodsCategoryId") + "")) {
             Long categoryId = Long.valueOf(params.get("goodsCategoryId") + "");
-            SearchPageCategoryVO searchPageCategoryVO = newBeeMallCategoryService.getCategoriesForSearch(categoryId);
+            SearchPageCategoryVO searchPageCategoryVO = nwpuMarketCategoryService.getCategoriesForSearch(categoryId);
             if (searchPageCategoryVO != null) {
                 request.setAttribute("goodsCategoryId", categoryId);
                 request.setAttribute("searchPageCategoryVO", searchPageCategoryVO);
@@ -54,7 +54,7 @@ public class GoodsController {
         params.put("keyword", keyword);
         //封装商品数据
         PageQueryUtil pageUtil = new PageQueryUtil(params);
-        request.setAttribute("pageResult", newBeeMallGoodsService.searchNWPUMarketGoods(pageUtil));
+        request.setAttribute("pageResult", nwpuMarketGoodsService.searchNWPUMarketGoods(pageUtil));
         return "mall/search";
     }
 
@@ -63,7 +63,7 @@ public class GoodsController {
         if (goodsId < 1) {
             return "error/error_5xx";
         }
-        NWPUMarketGoods goods = newBeeMallGoodsService.getNWPUMarketGoodsById(goodsId);
+        NWPUMarketGoods goods = nwpuMarketGoodsService.getNWPUMarketGoodsById(goodsId);
         if (goods == null) {
             return "error/error_404";
         }
