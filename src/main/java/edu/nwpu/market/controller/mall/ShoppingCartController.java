@@ -2,8 +2,8 @@ package edu.nwpu.market.controller.mall;
 
 import edu.nwpu.market.common.Constants;
 import edu.nwpu.market.common.ServiceResultEnum;
-import edu.nwpu.market.controller.vo.NWPUMallShoppingCartItemVO;
 import edu.nwpu.market.controller.vo.NWPUMallUserVO;
+import edu.nwpu.market.controller.vo.NWPUMarketShoppingCartItemVO;
 import edu.nwpu.market.entity.NWPUMarketShoppingCartItem;
 import edu.nwpu.market.service.NWPUMarketShoppingCartService;
 import edu.nwpu.market.util.Result;
@@ -29,15 +29,15 @@ public class ShoppingCartController {
         NWPUMallUserVO user = (NWPUMallUserVO) httpSession.getAttribute(Constants.MALL_USER_SESSION_KEY);
         int itemsTotal = 0;
         int priceTotal = 0;
-        List<NWPUMallShoppingCartItemVO> myShoppingCartItems = nwpuMarketShoppingCartService.getMyShoppingCartItems(user.getUserId());
+        List<NWPUMarketShoppingCartItemVO> myShoppingCartItems = nwpuMarketShoppingCartService.getMyShoppingCartItems(user.getUserId());
         if (!CollectionUtils.isEmpty(myShoppingCartItems)) {
             //订单项总数
-            itemsTotal = myShoppingCartItems.stream().mapToInt(NWPUMallShoppingCartItemVO::getGoodsCount).sum();
+            itemsTotal = myShoppingCartItems.stream().mapToInt(NWPUMarketShoppingCartItemVO::getGoodsCount).sum();
             if (itemsTotal < 1) {
                 return "error/error_5xx";
             }
             //总价
-            for (NWPUMallShoppingCartItemVO nwpuMarketShoppingCartItemVO : myShoppingCartItems) {
+            for (NWPUMarketShoppingCartItemVO nwpuMarketShoppingCartItemVO : myShoppingCartItems) {
                 priceTotal += nwpuMarketShoppingCartItemVO.getGoodsCount() * nwpuMarketShoppingCartItemVO.getSellingPrice();
             }
             if (priceTotal < 1) {
@@ -57,7 +57,7 @@ public class ShoppingCartController {
         NWPUMallUserVO user = (NWPUMallUserVO) httpSession.getAttribute(Constants.MALL_USER_SESSION_KEY);
         nwpuMarketShoppingCartItem.setUserId(user.getUserId());
         //todo 判断数量
-        String saveResult = nwpuMarketShoppingCartService.saveNewBeeMallCartItem(nwpuMarketShoppingCartItem);
+        String saveResult = nwpuMarketShoppingCartService.saveNWPUMarketCartItem(nwpuMarketShoppingCartItem);
         //添加成功
         if (ServiceResultEnum.SUCCESS.getResult().equals(saveResult)) {
             return ResultGenerator.genSuccessResult();
@@ -73,7 +73,7 @@ public class ShoppingCartController {
         NWPUMallUserVO user = (NWPUMallUserVO) httpSession.getAttribute(Constants.MALL_USER_SESSION_KEY);
         nwpuMarketShoppingCartItem.setUserId(user.getUserId());
         //todo 判断数量
-        String saveResult = nwpuMarketShoppingCartService.updateNewBeeMallCartItem(nwpuMarketShoppingCartItem);
+        String saveResult = nwpuMarketShoppingCartService.updateNWPUMarketCartItem(nwpuMarketShoppingCartItem);
         //修改成功
         if (ServiceResultEnum.SUCCESS.getResult().equals(saveResult)) {
             return ResultGenerator.genSuccessResult();
@@ -101,13 +101,13 @@ public class ShoppingCartController {
                              HttpSession httpSession) {
         int priceTotal = 0;
         NWPUMallUserVO user = (NWPUMallUserVO) httpSession.getAttribute(Constants.MALL_USER_SESSION_KEY);
-        List<NWPUMallShoppingCartItemVO> myShoppingCartItems = nwpuMarketShoppingCartService.getMyShoppingCartItems(user.getUserId());
+        List<NWPUMarketShoppingCartItemVO> myShoppingCartItems = nwpuMarketShoppingCartService.getMyShoppingCartItems(user.getUserId());
         if (CollectionUtils.isEmpty(myShoppingCartItems)) {
             //无数据则不跳转至结算页
             return "/shop-cart";
         } else {
             //总价
-            for (NWPUMallShoppingCartItemVO nwpuMarketShoppingCartItemVO : myShoppingCartItems) {
+            for (NWPUMarketShoppingCartItemVO nwpuMarketShoppingCartItemVO : myShoppingCartItems) {
                 priceTotal += nwpuMarketShoppingCartItemVO.getGoodsCount() * nwpuMarketShoppingCartItemVO.getSellingPrice();
             }
             if (priceTotal < 1) {
