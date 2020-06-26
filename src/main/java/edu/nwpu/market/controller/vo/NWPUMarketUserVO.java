@@ -2,7 +2,7 @@ package edu.nwpu.market.controller.vo;
 
 import java.io.Serializable;
 
-public class NWPUMallUserVO implements Serializable {
+public class NWPUMarketUserVO implements Serializable {
 
     private Long userId;
 
