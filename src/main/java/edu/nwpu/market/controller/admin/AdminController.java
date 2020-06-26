@@ -1,5 +1,6 @@
 package edu.nwpu.market.controller.admin;
 
+import edu.nwpu.market.common.ServiceResultEnum;
 import edu.nwpu.market.entity.AdminUser;
 import edu.nwpu.market.service.AdminUserService;
 import org.springframework.stereotype.Controller;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+
 @Controller
 @RequestMapping("/admin")
 public class AdminController {
@@ -60,6 +62,54 @@ public class AdminController {
             return "admin/login";
         }
     }
+
+    @GetMapping("/changePassword")
+    public String changePassword(HttpServletRequest request) {
+        Integer loginUserId = (int) request.getSession().getAttribute("loginUserId");
+        AdminUser adminUser = adminUserService.getUserDetailById(loginUserId);
+        if (adminUser == null) {
+            return "admin/login";
+        }
+        request.setAttribute("path", "changePassword");
+        request.setAttribute("loginUserName", adminUser.getLoginUserName());
+        request.setAttribute("nickName", adminUser.getNickName());
+        return "admin/changePassword";
+    }
+
+    @PostMapping("/changePassword/password")
+    @ResponseBody
+    public String passwordUpdate(HttpServletRequest request, @RequestParam("originalPassword") String originalPassword,
+                                 @RequestParam("newPassword") String newPassword) {
+        if (StringUtils.isEmpty(originalPassword) || StringUtils.isEmpty(newPassword)) {
+            return "参数不能为空";
+        }
+        Integer loginUserId = (int) request.getSession().getAttribute("loginUserId");
+        if (adminUserService.updatePassword(loginUserId, originalPassword, newPassword)) {
+            //修改成功后清空session中的数据，前端控制跳转至登录页
+            request.getSession().removeAttribute("loginUserId");
+            request.getSession().removeAttribute("loginUser");
+            request.getSession().removeAttribute("errorMsg");
+            return "redirect:admin/login";
+        } else {
+            return "修改失败";
+        }
+    }
+
+    @PostMapping("/changePassword/name")
+    @ResponseBody
+    public String nameUpdate(HttpServletRequest request, @RequestParam("loginUserName") String loginUserName,
+                             @RequestParam("nickName") String nickName) {
+        if (StringUtils.isEmpty(loginUserName) || StringUtils.isEmpty(nickName)) {
+            return "参数不能为空";
+        }
+        Integer loginUserId = (int) request.getSession().getAttribute("loginUserId");
+        if (adminUserService.updateName(loginUserId, loginUserName, nickName)) {
+            return ServiceResultEnum.SUCCESS.getResult();
+        } else {
+            return "修改失败";
+        }
+    }
+
     @GetMapping("/logout")
     public String logout(HttpServletRequest request) {
         //清空session中的数据，前端控制跳转至登录页，登出成功。
