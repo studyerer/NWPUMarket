@@ -2,6 +2,7 @@ package edu.nwpu.market.service;
 
 import edu.nwpu.market.controller.vo.NWPUMarketOrderDetailVO;
 import edu.nwpu.market.controller.vo.NWPUMarketOrderItemVO;
+import edu.nwpu.market.controller.vo.NWPUMarketShoppingCartItemVO;
 import edu.nwpu.market.controller.vo.NWPUMarketUserVO;
 import edu.nwpu.market.entity.NWPUMarketOrder;
 import edu.nwpu.market.util.PageQueryUtil;
