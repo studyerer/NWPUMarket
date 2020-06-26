@@ -165,7 +165,7 @@
     delete from tb_nwpu_market_goods_info
     where goods_id = #{goodsId,jdbcType=BIGINT}
   </delete>
-    <insert id="insert" parameterType="ltd.newbee.mall.entity.NWPUMarketGoods">
+    <insert id="insert" parameterType="edu.nwpu.market.entity.NWPUMarketGoods">
     insert into tb_nwpu_market_goods_info (goods_id, goods_name, goods_intro, 
       goods_cover_img, goods_carousel, original_price, 
       selling_price, stock_num, tag, 
@@ -179,7 +179,7 @@
       #{updateUser,jdbcType=INTEGER}, #{updateTime,jdbcType=TIMESTAMP}, #{goodsDetailContent,jdbcType=LONGVARCHAR}
       )
   </insert>
-    <insert id="insertSelective" parameterType="ltd.newbee.mall.entity.NWPUMarketGoods">
+    <insert id="insertSelective" parameterType="edu.nwpu.market.entity.NWPUMarketGoods">
         insert into tb_nwpu_market_goods_info
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="goodsId != null">
@@ -282,7 +282,7 @@
             </if>
         </trim>
     </insert>
-    <update id="updateByPrimaryKeySelective" parameterType="ltd.newbee.mall.entity.NWPUMarketGoods">
+    <update id="updateByPrimaryKeySelective" parameterType="edu.nwpu.market.entity.NWPUMarketGoods">
         update tb_nwpu_market_goods_info
         <set>
             <if test="goodsName != null">
@@ -333,7 +333,7 @@
         </set>
         where goods_id = #{goodsId,jdbcType=BIGINT}
     </update>
-    <update id="updateByPrimaryKeyWithBLOBs" parameterType="ltd.newbee.mall.entity.NWPUMarketGoods">
+    <update id="updateByPrimaryKeyWithBLOBs" parameterType="edu.nwpu.market.entity.NWPUMarketGoods">
     update tb_nwpu_market_goods_info
     set goods_name = #{goodsName,jdbcType=VARCHAR},
       goods_intro = #{goodsIntro,jdbcType=VARCHAR},
@@ -351,7 +351,7 @@
       goods_detail_content = #{goodsDetailContent,jdbcType=LONGVARCHAR}
     where goods_id = #{goodsId,jdbcType=BIGINT}
   </update>
-    <update id="updateByPrimaryKey" parameterType="ltd.newbee.mall.entity.NWPUMarketGoods">
+    <update id="updateByPrimaryKey" parameterType="edu.nwpu.market.entity.NWPUMarketGoods">
     update tb_nwpu_market_goods_info
     set goods_name = #{goodsName,jdbcType=VARCHAR},
       goods_intro = #{goodsIntro,jdbcType=VARCHAR},
