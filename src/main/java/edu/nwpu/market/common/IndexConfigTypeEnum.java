@@ -5,6 +5,8 @@ public enum IndexConfigTypeEnum {
     DEFAULT(0, "DEFAULT"),
     INDEX_SEARCH_HOTS(1, "INDEX_SEARCH_HOTS"),
     INDEX_SEARCH_DOWN_HOTS(2, "INDEX_SEARCH_DOWN_HOTS"),
+    INDEX_GOODS_HOT(3, "INDEX_GOODS_HOTS"),
+    INDEX_GOODS_NEW(4, "INDEX_GOODS_NEW"),
     INDEX_GOODS_RECOMMOND(5, "INDEX_GOODS_RECOMMOND");
 
     private int type;
@@ -41,4 +43,3 @@ public enum IndexConfigTypeEnum {
         this.name = name;
     }
 }
-
