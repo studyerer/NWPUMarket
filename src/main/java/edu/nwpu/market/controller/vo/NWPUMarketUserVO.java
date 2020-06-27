@@ -1,7 +1,5 @@
 package edu.nwpu.market.controller.vo;
 
-import org.omg.PortableServer._ServantActivatorStub;
-
 import java.io.Serializable;
 
 public class NWPUMarketUserVO implements Serializable {
@@ -17,18 +15,6 @@ public class NWPUMarketUserVO implements Serializable {
     private String address;
 
     private int shopCartItemCount;
-
-    /*test*/
-    public NWPUMarketUserVO(Long _userId,String _nickName,String _loginName,
-                            String _introduceSign,String _address,int _shopCartItemCount){
-        userId = _userId;
-        nickName = _nickName;
-        loginName = _loginName;
-        introduceSign = _introduceSign;
-        address = _address;
-        shopCartItemCount = _shopCartItemCount;
-
-    }
 
     public Long getUserId() {
         return userId;

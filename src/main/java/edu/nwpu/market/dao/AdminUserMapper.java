@@ -9,7 +9,7 @@ public interface AdminUserMapper {
     int insertSelective(AdminUser record);
 
     /**
-     * 登陆方法
+     * 登录方法
      *
      * @param userName
      * @param password
@@ -17,4 +17,15 @@ public interface AdminUserMapper {
      */
     AdminUser login(@Param("userName") String userName, @Param("password") String password);
 
+    /**
+     * 根据登录用户Id选择管理员对象
+     *
+     * @param adminUserId
+     * @return
+     */
+    AdminUser selectByPrimaryKey(Integer adminUserId);
+
+    int updateByPrimaryKeySelective(AdminUser record);
+
+    int updateByPrimaryKey(AdminUser record);
 }

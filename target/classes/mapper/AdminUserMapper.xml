@@ -11,6 +11,8 @@
   <sql id="Base_Column_List">
     admin_user_id, login_user_name, login_password, nick_name, locked
   </sql>
+
+  <!-- 登录功能的mapper -->
   <select id="login" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />
@@ -18,5 +20,41 @@
     where login_user_name = #{userName,jdbcType=VARCHAR} AND login_password=#{password,jdbcType=VARCHAR} AND locked = 0
   </select>
 
+  <!--选择管理员ID  -->
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from tb_nwpu_market_admin_user
+    where admin_user_id = #{adminUserId,jdbcType=INTEGER}
+  </select>
+
+  <!--更新操作  -->
+  <update id="updateByPrimaryKey" parameterType="edu.nwpu.market.entity.AdminUser">
+    update tb_nwpu_market_admin_user
+    set login_user_name = #{loginUserName,jdbcType=VARCHAR},
+      login_password = #{loginPassword,jdbcType=VARCHAR},
+      nick_name = #{nickName,jdbcType=VARCHAR},
+      locked = #{locked,jdbcType=TINYINT}
+    where admin_user_id = #{adminUserId,jdbcType=INTEGER}
+  </update>
+
+  <update id="updateByPrimaryKeySelective" parameterType="edu.nwpu.market.entity.AdminUser">
+    update tb_nwpu_market_admin_user
+    <set>
+      <if test="loginUserName != null">
+        login_user_name = #{loginUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="loginPassword != null">
+        login_password = #{loginPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="nickName != null">
+        nick_name = #{nickName,jdbcType=VARCHAR},
+      </if>
+      <if test="locked != null">
+        locked = #{locked,jdbcType=TINYINT},
+      </if>
+    </set>
+    where admin_user_id = #{adminUserId,jdbcType=INTEGER}
+  </update>
 
 </mapper>
