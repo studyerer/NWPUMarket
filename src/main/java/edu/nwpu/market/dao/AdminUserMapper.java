@@ -9,7 +9,7 @@ public interface AdminUserMapper {
     int insertSelective(AdminUser record);
 
     /**
-     * 登陆方法
+     * 登录方法
      *
      * @param userName
      * @param password
