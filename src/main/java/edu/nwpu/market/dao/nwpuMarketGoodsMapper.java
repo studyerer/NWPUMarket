@@ -8,39 +8,39 @@
  */
 package edu.nwpu.market.dao;
 
-import edu.nwpu.market.entity.nwpuMarketGoods;
+import edu.nwpu.market.entity.NWPUMarketGoods;
 import edu.nwpu.market.entity.StockNumDTO;
 import edu.nwpu.market.util.PageQueryUtil;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
-public interface nwpuMarketGoodsMapper {
+public interface NWPUMarketGoodsMapper {
     int deleteByPrimaryKey(Long goodsId);
 
-    int insert(nwpuMarketGoods record);
+    int insert(NWPUMarketGoods record);
 
-    int insertSelective(nwpuMarketGoods record);
+    int insertSelective(NWPUMarketGoods record);
 
-    nwpuMarketGoods selectByPrimaryKey(Long goodsId);
+    NWPUMarketGoods selectByPrimaryKey(Long goodsId);
 
-    int updateByPrimaryKeySelective(nwpuMarketGoods record);
+    int updateByPrimaryKeySelective(NWPUMarketGoods record);
 
-    int updateByPrimaryKeyWithBLOBs(nwpuMarketGoods record);
+    int updateByPrimaryKeyWithBLOBs(NWPUMarketGoods record);
 
-    int updateByPrimaryKey(nwpuMarketGoods record);
+    int updateByPrimaryKey(NWPUMarketGoods record);
 
-    List<nwpuMarketGoods> findnwpuMarketGoodsList(PageQueryUtil pageUtil);
+    List<NWPUMarketGoods> findNWPUMarketGoodsList(PageQueryUtil pageUtil);
 
-    int getTotalnwpuMarketGoods(PageQueryUtil pageUtil);
+    int getTotalNWPUMarketGoods(PageQueryUtil pageUtil);
 
-    List<nwpuMarketGoods> selectByPrimaryKeys(List<Long> goodsIds);
+    List<NWPUMarketGoods> selectByPrimaryKeys(List<Long> goodsIds);
 
-    List<nwpuMarketGoods> findnwpuMarketGoodsListBySearch(PageQueryUtil pageUtil);
+    List<NWPUMarketGoods> findNWPUMarketGoodsListBySearch(PageQueryUtil pageUtil);
 
-    int getTotalnwpuMarketGoodsBySearch(PageQueryUtil pageUtil);
+    int getTotalNWPUMarketGoodsBySearch(PageQueryUtil pageUtil);
 
-    int batchInsert(@Param("nwpuMarketGoodsList") List<nwpuMarketGoods> nwpuMarketGoodsList);
+    int batchInsert(@Param("NWPUMarketGoodsList") List<NWPUMarketGoods> NWPUMarketGoodsList);
 
     int updateStockNum(@Param("stockNumDTOS") List<StockNumDTO> stockNumDTOS);
 
