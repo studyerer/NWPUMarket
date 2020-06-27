@@ -13,7 +13,7 @@
         <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
     </resultMap>
     <sql id="Base_Column_List">
-    user_id,nick_name, login_name, password_md5, introduce_sign, address, is_deleted,
+    user_id, nick_name, login_name, password_md5, introduce_sign, address, is_deleted, 
     locked_flag, create_time
   </sql>
 

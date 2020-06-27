@@ -1,7 +1,5 @@
 package edu.nwpu.market.common;
 
-/**
- */
 public enum ServiceResultEnum {
     ERROR("error"),
 
@@ -18,8 +16,6 @@ public enum ServiceResultEnum {
     LOGIN_PASSWORD_NULL("请输入密码！"),
 
     LOGIN_VERIFY_CODE_NULL("请输入验证码！"),
-
-    LOGIN_VERIFY_CODE_ERROR("验证码错误！"),
 
     GOODS_NOT_EXIST("商品不存在！"),
 

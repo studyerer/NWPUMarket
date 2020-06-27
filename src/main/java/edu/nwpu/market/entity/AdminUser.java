@@ -1,5 +1,4 @@
 package edu.nwpu.market.entity;
-
 public class AdminUser {
     private Integer adminUserId;
 

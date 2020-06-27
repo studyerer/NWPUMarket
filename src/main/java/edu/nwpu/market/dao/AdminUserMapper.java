@@ -17,6 +17,12 @@ public interface AdminUserMapper {
      */
     AdminUser login(@Param("userName") String userName, @Param("password") String password);
 
+    /**
+     * 根据登录用户Id选择管理员对象
+     *
+     * @param adminUserId
+     * @return
+     */
     AdminUser selectByPrimaryKey(Integer adminUserId);
 
     int updateByPrimaryKeySelective(AdminUser record);

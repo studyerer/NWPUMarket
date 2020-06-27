@@ -1,4 +1,4 @@
-CREATE SCHEMA `nwpu_market_db` ;
+﻿CREATE SCHEMA `nwpu_market_db` ;
 USE `nwpu_market_db` ;
 
 DROP TABLE IF EXISTS `tb_nwpu_market_admin_user`;-- ’管理员-表’
