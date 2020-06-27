@@ -3,10 +3,10 @@ package edu.nwpu.market.service.impl;
 
 import edu.nwpu.market.common.Constants;
 import edu.nwpu.market.common.ServiceResultEnum;
-import edu.nwpu.market.controller.vo.NWPUMallUserVO;
+import edu.nwpu.market.controller.vo.NWPUMarketUserVO;
 import edu.nwpu.market.dao.MallUserMapper;
 import edu.nwpu.market.entity.NWPUMallUser;
-import edu.nwpu.market.service.NWPUMallUserService;
+import edu.nwpu.market.service.NWPUMarketUserService;
 import edu.nwpu.market.util.BeanUtil;
 import edu.nwpu.market.util.MD5Util;
 import edu.nwpu.market.util.PageQueryUtil;
@@ -18,7 +18,7 @@ import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Service
-public class NWPUMallUserServiceImpl implements NWPUMallUserService {
+public class NWPUMarketUserServiceImpl implements NWPUMarketUserService {
 
     @Autowired
     private MallUserMapper mallUserMapper;
@@ -59,7 +59,7 @@ public class NWPUMallUserServiceImpl implements NWPUMallUserService {
                 String tempNickName = user.getNickName().substring(0, 7) + "..";
                 user.setNickName(tempNickName);
             }
-            NWPUMallUserVO newBeeMallUserVO = new NWPUMallUserVO();
+            NWPUMarketUserVO newBeeMallUserVO = new NWPUMarketUserVO();
             BeanUtil.copyProperties(user, newBeeMallUserVO);
             //设置购物车中的数量
             httpSession.setAttribute(Constants.MALL_USER_SESSION_KEY, newBeeMallUserVO);
@@ -69,14 +69,14 @@ public class NWPUMallUserServiceImpl implements NWPUMallUserService {
     }
 
     @Override
-    public NWPUMallUserVO updateUserInfo(NWPUMallUser NWPUMallUser, HttpSession httpSession) {
+    public NWPUMarketUserVO updateUserInfo(NWPUMallUser NWPUMallUser, HttpSession httpSession) {
         NWPUMallUser user = mallUserMapper.selectByPrimaryKey(NWPUMallUser.getUserId());
         if (user != null) {
             user.setNickName(NWPUMallUser.getNickName());
             user.setAddress(NWPUMallUser.getAddress());
             user.setIntroduceSign(NWPUMallUser.getIntroduceSign());
             if (mallUserMapper.updateByPrimaryKeySelective(user) > 0) {
-                NWPUMallUserVO newBeeMallUserVO = new NWPUMallUserVO();
+                NWPUMarketUserVO newBeeMallUserVO = new NWPUMarketUserVO();
                 user = mallUserMapper.selectByPrimaryKey(NWPUMallUser.getUserId());
                 BeanUtil.copyProperties(user, newBeeMallUserVO);
                 httpSession.setAttribute(Constants.MALL_USER_SESSION_KEY, newBeeMallUserVO);

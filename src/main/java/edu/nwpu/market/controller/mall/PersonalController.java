@@ -3,9 +3,9 @@ package edu.nwpu.market.controller.mall;
 
 import edu.nwpu.market.common.Constants;
 import edu.nwpu.market.common.ServiceResultEnum;
-import edu.nwpu.market.controller.vo.NWPUMallUserVO;
+import edu.nwpu.market.controller.vo.NWPUMarketUserVO;
 import edu.nwpu.market.entity.NWPUMallUser;
-import edu.nwpu.market.service.NWPUMallUserService;
+import edu.nwpu.market.service.NWPUMarketUserService;
 import edu.nwpu.market.util.MD5Util;
 import edu.nwpu.market.util.Result;
 import edu.nwpu.market.util.ResultGenerator;
@@ -21,7 +21,7 @@ import javax.servlet.http.HttpSession;
 public class PersonalController {
 
     @Resource
-    private NWPUMallUserService newBeeMallUserService;
+    private NWPUMarketUserService newBeeMallUserService;
 
     @GetMapping("/personal")
     public String personalPage(HttpServletRequest request,
@@ -112,7 +112,7 @@ public class PersonalController {
     @PostMapping("/personal/updateInfo")
     @ResponseBody
     public Result updateInfo(@RequestBody NWPUMallUser NWPUMallUser, HttpSession httpSession) {
-        NWPUMallUserVO mallUserTemp = newBeeMallUserService.updateUserInfo(NWPUMallUser, httpSession);
+        NWPUMarketUserVO mallUserTemp = newBeeMallUserService.updateUserInfo(NWPUMallUser, httpSession);
         if (mallUserTemp == null) {
             Result result = ResultGenerator.genFailResult("修改失败");
             return result;
