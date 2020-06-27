@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 
 import java.util.Date;
 
-public class MallUser {
+public class NWPUMallUser {
     private Long userId;
 
     private String nickName;

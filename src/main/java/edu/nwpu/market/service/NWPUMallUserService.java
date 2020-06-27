@@ -1,14 +1,14 @@
 
 package edu.nwpu.market.service;
 
-import edu.nwpu.market.controller.vo.MallUserVO;
-import edu.nwpu.market.entity.MallUser;
+import edu.nwpu.market.controller.vo.NWPUMallUserVO;
+import edu.nwpu.market.entity.NWPUMallUser;
 import edu.nwpu.market.util.PageQueryUtil;
 import edu.nwpu.market.util.PageResult;
 
 import javax.servlet.http.HttpSession;
 
-public interface MallUserService {
+public interface NWPUMallUserService {
     /**
      * 后台分页
      *
@@ -39,10 +39,10 @@ public interface MallUserService {
     /**
      * 用户信息修改并返回最新的用户信息
      *
-     * @param mallUser
+     * @param NWPUMallUser
      * @return
      */
-    MallUserVO updateUserInfo(MallUser mallUser, HttpSession httpSession);
+    NWPUMallUserVO updateUserInfo(NWPUMallUser NWPUMallUser, HttpSession httpSession);
 
     /**
      * 用户禁用与解除禁用(0-未锁定 1-已锁定)

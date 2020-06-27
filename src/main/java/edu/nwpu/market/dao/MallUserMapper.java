@@ -1,7 +1,7 @@
 
 package edu.nwpu.market.dao;
 
-import edu.nwpu.market.entity.MallUser;
+import edu.nwpu.market.entity.NWPUMallUser;
 import edu.nwpu.market.util.PageQueryUtil;
 import org.apache.ibatis.annotations.Param;
 
@@ -10,21 +10,21 @@ import java.util.List;
 public interface MallUserMapper {
     int deleteByPrimaryKey(Long userId);
 
-    int insert(MallUser record);
+    int insert(NWPUMallUser record);
 
-    int insertSelective(MallUser record);
+    int insertSelective(NWPUMallUser record);
 
-    MallUser selectByPrimaryKey(Long userId);
+    NWPUMallUser selectByPrimaryKey(Long userId);
 
-    MallUser selectByLoginName(String loginName);
+    NWPUMallUser selectByLoginName(String loginName);
 
-    MallUser selectByLoginNameAndPasswd(@Param("loginName") String loginName, @Param("password") String password);
+    NWPUMallUser selectByLoginNameAndPasswd(@Param("loginName") String loginName, @Param("password") String password);
 
-    int updateByPrimaryKeySelective(MallUser record);
+    int updateByPrimaryKeySelective(NWPUMallUser record);
 
-    int updateByPrimaryKey(MallUser record);
+    int updateByPrimaryKey(NWPUMallUser record);
 
-    List<MallUser> findMallUserList(PageQueryUtil pageUtil);
+    List<NWPUMallUser> findMallUserList(PageQueryUtil pageUtil);
 
     int getTotalMallUsers(PageQueryUtil pageUtil);
 

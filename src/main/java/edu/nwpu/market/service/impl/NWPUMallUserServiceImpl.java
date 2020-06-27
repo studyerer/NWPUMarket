@@ -3,10 +3,10 @@ package edu.nwpu.market.service.impl;
 
 import edu.nwpu.market.common.Constants;
 import edu.nwpu.market.common.ServiceResultEnum;
-import edu.nwpu.market.controller.vo.MallUserVO;
+import edu.nwpu.market.controller.vo.NWPUMallUserVO;
 import edu.nwpu.market.dao.MallUserMapper;
-import edu.nwpu.market.entity.MallUser;
-import edu.nwpu.market.service.MallUserService;
+import edu.nwpu.market.entity.NWPUMallUser;
+import edu.nwpu.market.service.NWPUMallUserService;
 import edu.nwpu.market.util.BeanUtil;
 import edu.nwpu.market.util.MD5Util;
 import edu.nwpu.market.util.PageQueryUtil;
@@ -18,16 +18,16 @@ import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Service
-public class MallUserServiceImpl implements MallUserService {
+public class NWPUMallUserServiceImpl implements NWPUMallUserService {
 
     @Autowired
     private MallUserMapper mallUserMapper;
 
     @Override
     public PageResult getMallUsersPage(PageQueryUtil pageUtil) {
-        List<MallUser> mallUsers = mallUserMapper.findMallUserList(pageUtil);
+        List<NWPUMallUser> NWPUMallUsers = mallUserMapper.findMallUserList(pageUtil);
         int total = mallUserMapper.getTotalMallUsers(pageUtil);
-        PageResult pageResult = new PageResult(mallUsers, total, pageUtil.getLimit(), pageUtil.getPage());
+        PageResult pageResult = new PageResult(NWPUMallUsers, total, pageUtil.getLimit(), pageUtil.getPage());
         return pageResult;
     }
 
@@ -36,7 +36,7 @@ public class MallUserServiceImpl implements MallUserService {
         if (mallUserMapper.selectByLoginName(loginName) != null) {
             return ServiceResultEnum.SAME_LOGIN_NAME_EXIST.getResult();
         }
-        MallUser registerUser = new MallUser();
+        NWPUMallUser registerUser = new NWPUMallUser();
         registerUser.setLoginName(loginName);
         registerUser.setNickName(loginName);
         String passwordMD5 = MD5Util.MD5Encode(password, "UTF-8");
@@ -49,7 +49,7 @@ public class MallUserServiceImpl implements MallUserService {
 
     @Override
     public String login(String loginName, String passwordMD5, HttpSession httpSession) {
-        MallUser user = mallUserMapper.selectByLoginNameAndPasswd(loginName, passwordMD5);
+        NWPUMallUser user = mallUserMapper.selectByLoginNameAndPasswd(loginName, passwordMD5);
         if (user != null && httpSession != null) {
             if (user.getLockedFlag() == 1) {
                 return ServiceResultEnum.LOGIN_USER_LOCKED.getResult();
@@ -59,7 +59,7 @@ public class MallUserServiceImpl implements MallUserService {
                 String tempNickName = user.getNickName().substring(0, 7) + "..";
                 user.setNickName(tempNickName);
             }
-            MallUserVO newBeeMallUserVO = new MallUserVO();
+            NWPUMallUserVO newBeeMallUserVO = new NWPUMallUserVO();
             BeanUtil.copyProperties(user, newBeeMallUserVO);
             //设置购物车中的数量
             httpSession.setAttribute(Constants.MALL_USER_SESSION_KEY, newBeeMallUserVO);
@@ -69,15 +69,15 @@ public class MallUserServiceImpl implements MallUserService {
     }
 
     @Override
-    public MallUserVO updateUserInfo(MallUser mallUser, HttpSession httpSession) {
-        MallUser user = mallUserMapper.selectByPrimaryKey(mallUser.getUserId());
+    public NWPUMallUserVO updateUserInfo(NWPUMallUser NWPUMallUser, HttpSession httpSession) {
+        NWPUMallUser user = mallUserMapper.selectByPrimaryKey(NWPUMallUser.getUserId());
         if (user != null) {
-            user.setNickName(mallUser.getNickName());
-            user.setAddress(mallUser.getAddress());
-            user.setIntroduceSign(mallUser.getIntroduceSign());
+            user.setNickName(NWPUMallUser.getNickName());
+            user.setAddress(NWPUMallUser.getAddress());
+            user.setIntroduceSign(NWPUMallUser.getIntroduceSign());
             if (mallUserMapper.updateByPrimaryKeySelective(user) > 0) {
-                MallUserVO newBeeMallUserVO = new MallUserVO();
-                user = mallUserMapper.selectByPrimaryKey(mallUser.getUserId());
+                NWPUMallUserVO newBeeMallUserVO = new NWPUMallUserVO();
+                user = mallUserMapper.selectByPrimaryKey(NWPUMallUser.getUserId());
                 BeanUtil.copyProperties(user, newBeeMallUserVO);
                 httpSession.setAttribute(Constants.MALL_USER_SESSION_KEY, newBeeMallUserVO);
                 return newBeeMallUserVO;
