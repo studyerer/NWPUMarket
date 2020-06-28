@@ -5,6 +5,10 @@ import edu.nwpu.market.entity.NWPUMarketShoppingCartItem;
 
 import java.util.List;
 
+/**
+ * @author GCZ
+ *
+ */
 public interface NWPUMarketShoppingCartService {
 
     /**
