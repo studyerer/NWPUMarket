@@ -7,6 +7,10 @@ import edu.nwpu.market.util.PageResult;
 
 import javax.servlet.http.HttpSession;
 
+/**
+ * @author HuYaJun
+ *
+ */
 public interface NWPUMarketUserService {
     /**
      * 后台分页
