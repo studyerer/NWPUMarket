@@ -7,6 +7,10 @@ import edu.nwpu.market.util.PageResult;
 
 import java.util.List;
 
+/**
+ * @author GCZ
+ *
+ */
 public interface NWPUMarketGoodsService {
     /**
      * 后台分页
