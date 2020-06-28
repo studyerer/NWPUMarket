@@ -9,6 +9,10 @@ import edu.nwpu.market.util.PageResult;
 
 import java.util.List;
 
+/**
+ * @author XuXiaoJie
+ *
+ */
 public interface NWPUMarketIndexConfigService {
     /**
      * 后台分页
