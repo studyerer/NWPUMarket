@@ -32,8 +32,8 @@ public class ShoppingCartController {
         List<NWPUMarketShoppingCartItemVO> myShoppingCartItems =
                 nwpuMarketShoppingCartService.
                         getMyShoppingCartItems(
-                                user.
-                                        getUserId()
+                                
+                                user.getUserId()
                         );
         if (!CollectionUtils.isEmpty(myShoppingCartItems)) {
             //订单项总数

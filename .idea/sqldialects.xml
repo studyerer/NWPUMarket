@@ -1,10 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="SqlDialectMappings">
-    <file url="file://$PROJECT_DIR$/nwpu_market_schema.sql" dialect="GenericSQL" />
-    <file url="file://$PROJECT_DIR$/src/main/resources/mapper/NWPUMarketGoodsMapper.xml" dialect="GenericSQL" />
-    <file url="file://$PROJECT_DIR$/src/main/resources/mapper/NWPUMarketOrderItemMapper.xml" dialect="GenericSQL" />
-    <file url="file://$PROJECT_DIR$/src/main/resources/mapper/NWPUMarketOrderMapper.xml" dialect="GenericSQL" />
-    <file url="file://$PROJECT_DIR$/src/main/resources/mapper/NWPUMarketShoppingCartItemMapper.xml" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/nwpu_market_schema.sql" dialect="MySQL" />
   </component>
 </project>
