@@ -1,4 +1,4 @@
-package edu.nwpu.market.service.Impl;
+package edu.nwpu.market.service.impl;
 
 import edu.nwpu.market.common.Constants;
 import edu.nwpu.market.common.NWPUMarketCategoryLevelEnum;

@@ -10,7 +10,7 @@ import edu.nwpu.market.util.PageResult;
 
 import java.util.List;
 
-public interface NWPUMarketOrderService {
+public interface    NWPUMarketOrderService {
     /**
      * 后台分页
      *

@@ -62,7 +62,7 @@ public class NWPUMarketGoodsServiceImpl implements NWPUMarketGoodsService {
     public NWPUMarketGoods getNWPUMarketGoodsById(Long id) {
         return goodsMapper.selectByPrimaryKey(id);
     }
-    
+
     @Override
     public Boolean batchUpdateSellStatus(Long[] ids, int sellStatus) {
         return goodsMapper.batchUpdateSellStatus(ids, sellStatus) > 0;
