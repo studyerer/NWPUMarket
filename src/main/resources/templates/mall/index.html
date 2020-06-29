@@ -45,13 +45,13 @@ d<!DOCTYPE html>
                 <!-- 未配置轮播图则显示默认的三张轮播图 -->
                 <th:block th:if="${#lists.isEmpty(carousels)}">
                     <div class="swiper-slide">
-                        <img src="./mall/image/swiper/banner1.jpg" alt="">
+                        <img src="./mall/image/swiper/banner001.jpg" alt="">
                     </div>
                     <div class="swiper-slide">
-                        <img src="./mall/image/swiper/banner2.jpg" alt="">
+                        <img src="./mall/image/swiper/banner002.jpg" alt="">
                     </div>
                     <div class="swiper-slide">
-                        <img src="./mall/image/swiper/banner3.jpg" alt="">
+                        <img src="./mall/image/swiper/banner003.jpg" alt="">
                     </div>
                 </th:block>
             </div>
@@ -61,8 +61,10 @@ d<!DOCTYPE html>
         </div>
     </div>
 
-    <div id="sub_banner">
+
+   <div id="sub_banner">
         <!-- 已配置热销商品则显示配置内容 -->
+       <!--
         <th:block th:unless="${#lists.isEmpty(hotGoodses)}">
             <th:block th:each="hotGoodse : ${hotGoodses}">
                 <div class="hot-image">
@@ -71,30 +73,32 @@ d<!DOCTYPE html>
                     </a>
                 </div>
             </th:block>
-        </th:block>
+        </th:block>-->
         <!-- 未配置热销商品则显示默认 -->
-        <th:block th:if="${#lists.isEmpty(hotGoodses)}">
+
+
+    <!--<th:block th:if="${#lists.isEmpty(hotGoodses)}"> -->
             <div class="hot-image">
                 <a href="##">
-                    <img src="./mall/image/sub_banner/r4.jpg" alt="">
+                    <img src="./mall/image/sub_banner/hot01.jpg" alt="">
                 </a>
             </div>
             <div class="hot-image">
                 <a href="##">
-                    <img src="./mall/image/sub_banner/hot2.jpg" alt="">
+                    <img src="./mall/image/sub_banner/hot02%20.jpg" alt="">
                 </a>
             </div>
             <div class="hot-image">
                 <a href="##">
-                    <img src="./mall/image/sub_banner/hot3.jpg" alt="">
+                    <img src="./mall/image/sub_banner/hot03.jpeg" alt="">
                 </a>
             </div>
             <div class="hot-image">
                 <a href="##">
-                    <img src="./mall/image/sub_banner/hot4.jpg" alt="">
+                    <img src="./mall/image/sub_banner/hot04.jpg" alt="">
                 </a>
             </div>
-        </th:block>
+       <!-- </th:block> -->
     </div>
 
    <!--
@@ -179,8 +183,8 @@ d<!DOCTYPE html>
                             <p class="item_price" th:text="${recommendGoods.sellingPrice}">NewBeeMall</p>
                             <p class="counter">猜你喜欢</p>
                             <div class="comment">
-                                <p>新蜂精选</p>
-                                <p>好物也可以不贵</p>
+                                <p>西工大商场</p>
+                                <p>物超所值</p>
                             </div>
                         </a>
                     </li>
@@ -193,13 +197,13 @@ d<!DOCTYPE html>
                         <div class="info discount">
                             新品
                         </div>
-                        <img src="./mall/image/sub_banner/r1.jpg" alt=""/>
-                        <p class="name">华为平板 M6</p>
-                        <p class="price">1499元</p>
+                        <img src="./mall/image/sub_banner/0001.jpg" alt=""/>
+                        <p class="name">精品鸭舌</p>
+                        <p class="price">58元</p>
                         <p class="counter">猜你喜欢</p>
                         <div class="comment">
-                            <p>新蜂精选</p>
-                            <p>好物也可以不贵</p>
+                            <p>西工大商场</p>
+                            <p>物超所值</p>
                         </div>
                     </a>
                 </li>
@@ -208,13 +212,13 @@ d<!DOCTYPE html>
                         <div class="info discount">
                             5折起
                         </div>
-                        <img src="./mall/image/sub_banner/r2.jpg" alt=""/>
-                        <p class="name">华为平板 M6</p>
-                        <p class="price">1499元</p>
+                        <img src="./mall/image/sub_banner/0002.jpg" alt=""/>
+                        <p class="name">谷物黑麦面包</p>
+                        <p class="price">29.6元</p>
                         <p class="counter">猜你喜欢</p>
                         <div class="comment">
-                            <p>新蜂精选</p>
-                            <p>好物也可以不贵</p>
+                            <p>西工大商场</p>
+                            <p>物超所值</p>
                         </div>
                     </a>
                 </li>
@@ -223,13 +227,13 @@ d<!DOCTYPE html>
                         <div class="info discount">
                             新品
                         </div>
-                        <img src="./mall/image/sub_banner/r5.jpg" alt=""/>
-                        <p class="name">华为平板 M6</p>
-                        <p class="price">1499元</p>
+                        <img src="./mall/image/sub_banner/0003.jpg" alt=""/>
+                        <p class="name">江中猴头菇</p>
+                        <p class="price">199元</p>
                         <p class="counter">猜你喜欢</p>
                         <div class="comment">
-                            <p>新蜂精选</p>
-                            <p>好物也可以不贵</p>
+                            <p>西工大商场</p>
+                            <p>物超所值</p>
                         </div>
                     </a>
                 </li>
@@ -238,13 +242,13 @@ d<!DOCTYPE html>
                         <div class="info discount">
                             官降
                         </div>
-                        <img src="./mall/image/sub_banner/m6.jpg" alt=""/>
-                        <p class="name">华为平板 M6</p>
-                        <p class="price">1499元</p>
+                        <img src="./mall/image/sub_banner/0004.jpg" alt=""/>
+                        <p class="name">绿豆糕</p>
+                        <p class="price">59.9元</p>
                         <p class="counter">猜你喜欢</p>
                         <div class="comment">
-                            <p>新蜂精选</p>
-                            <p>好物也可以不贵</p>
+                            <p>西工大商场</p>
+                            <p>物超所值</p>
                         </div>
                     </a>
                 </li>
@@ -253,13 +257,13 @@ d<!DOCTYPE html>
                         <div class="info discount">
                             新品
                         </div>
-                        <img src="./mall/image/sub_banner/r6.jpg" alt=""/>
-                        <p class="name">华为平板 M6</p>
-                        <p class="price">1499元</p>
+                        <img src="./mall/image/sub_banner/0005.jpg" alt=""/>
+                        <p class="name">精品牛肉干</p>
+                        <p class="price">119元</p>
                         <p class="counter">猜你喜欢</p>
                         <div class="comment">
-                            <p>新蜂精选</p>
-                            <p>好物也可以不贵</p>
+                            <p>西工大商场</p>
+                            <p>物超所值</p>
                         </div>
                     </a>
                 </li>
@@ -268,13 +272,13 @@ d<!DOCTYPE html>
                         <div class="info discount">
                             热销
                         </div>
-                        <img src="./mall/image/sub_banner/r5.jpg" alt=""/>
-                        <p class="name">华为平板 M6</p>
-                        <p class="price">1499元</p>
+                        <img src="./mall/image/sub_banner/0006.jpg" alt=""/>
+                        <p class="name">光明莫斯利安</p>
+                        <p class="price">72元</p>
                         <p class="counter">猜你喜欢</p>
                         <div class="comment">
-                            <p>新蜂精选</p>
-                            <p>好物也可以不贵</p>
+                            <p>西工大商场</p>
+                            <p>物超所值</p>
                         </div>
                     </a>
                 </li>
@@ -283,13 +287,13 @@ d<!DOCTYPE html>
                         <div class="info discount">
                             享折扣
                         </div>
-                        <img src="./mall/image/sub_banner/r4.jpg" alt=""/>
-                        <p class="name">华为平板 M6</p>
-                        <p class="price">1499元</p>
+                        <img src="./mall/image/sub_banner/0007.jpg" alt=""/>
+                        <p class="name">超洁洗衣液</p>
+                        <p class="price">28元</p>
                         <p class="counter">猜你喜欢</p>
                         <div class="comment">
-                            <p>新蜂精选</p>
-                            <p>好物也可以不贵</p>
+                            <p>西工大商场</p>
+                            <p>物超所值</p>
                         </div>
                     </a>
                 </li>
@@ -298,13 +302,13 @@ d<!DOCTYPE html>
                         <div class="info discount">
                             最低价
                         </div>
-                        <img src="./mall/image/sub_banner/r3.jpg" alt=""/>
-                        <p class="name">华为平板 M6</p>
-                        <p class="price">1499元</p>
+                        <img src="./mall/image/sub_banner/0008.png" alt=""/>
+                        <p class="name">海飞丝</p>
+                        <p class="price">42元</p>
                         <p class="counter">猜你喜欢</p>
                         <div class="comment">
-                            <p>新蜂精选</p>
-                            <p>好物也可以不贵</p>
+                            <p>西工大商场</p>
+                            <p>物超所值</p>
                         </div>
                     </a>
                 </li>
@@ -313,13 +317,13 @@ d<!DOCTYPE html>
                         <div class="info discount">
                             热销
                         </div>
-                        <img src="./mall/image/sub_banner/r2.jpg" alt=""/>
-                        <p class="name">华为平板 M6</p>
-                        <p class="price">1499元</p>
+                        <img src="./mall/image/sub_banner/0009.jpg" alt=""/>
+                        <p class="name">柠檬红茶</p>
+                        <p class="price">18元</p>
                         <p class="counter">猜你喜欢</p>
                         <div class="comment">
-                            <p>新蜂精选</p>
-                            <p>好物也可以不贵</p>
+                            <p>西工大商场</p>
+                            <p>物超所值</p>
                         </div>
                     </a>
                 </li>
@@ -328,13 +332,13 @@ d<!DOCTYPE html>
                         <div class="info discount">
                             热销
                         </div>
-                        <img src="./mall/image/sub_banner/r1.jpg" alt=""/>
-                        <p class="name">华为平板 M6</p>
-                        <p class="price">1499元</p>
+                        <img src="./mall/image/sub_banner/00010.jpg" alt=""/>
+                        <p class="name">六神沐浴露</p>
+                        <p class="price">26元</p>
                         <p class="counter">猜你喜欢</p>
                         <div class="comment">
-                            <p>新蜂精选</p>
-                            <p>好物也可以不贵</p>
+                            <p>西工大商场</p>
+                            <p>物超所值</p>
                         </div>
                     </a>
                 </li>
