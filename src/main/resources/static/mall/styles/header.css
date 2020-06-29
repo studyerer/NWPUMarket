@@ -157,7 +157,7 @@
     width: 240px;
     text-indent: -10000px;
     background: url(../image/logo.png) no-repeat;
-    background-size: 60%;
+    background-size: 50%;
     background-position: center;
     margin-top: 10px;
 }
@@ -174,7 +174,7 @@
     width: 180px;
     text-indent: -10000px;
     background: url(../image/shupian.gif) no-repeat;
-    background-size: 100%;
+    background-size: 90%;
     background-position: center;
 }
 

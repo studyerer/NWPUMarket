@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+d<!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="mall/header::head-fragment('NWPU-market-首页','index')">
 </head>
@@ -45,13 +45,13 @@
                 <!-- 未配置轮播图则显示默认的三张轮播图 -->
                 <th:block th:if="${#lists.isEmpty(carousels)}">
                     <div class="swiper-slide">
-                        <img src="./mall/image/swiper/banner01.jpg" alt="">
+                        <img src="./mall/image/swiper/banner1.jpg" alt="">
                     </div>
                     <div class="swiper-slide">
-                        <img src="./mall/image/swiper/banner02.jpg" alt="">
+                        <img src="./mall/image/swiper/banner2.jpg" alt="">
                     </div>
                     <div class="swiper-slide">
-                        <img src="./mall/image/swiper/banner03.jpg" alt="">
+                        <img src="./mall/image/swiper/banner3.jpg" alt="">
                     </div>
                 </th:block>
             </div>
@@ -97,11 +97,12 @@
         </th:block>
     </div>
 
-    <div id="flash">
+   <!--
+   <div id="flash">
         <h2>新品上线</h2>
-        <ul>
+        <ul> -->
             <!-- 已配置新品则显示配置内容 -->
-            <th:block th:unless="${#lists.isEmpty(newGoodses)}">
+           <!-- <th:block th:unless="${#lists.isEmpty(newGoodses)}">
                 <th:block th:each="newGoods : ${newGoodses}">
                     <li>
                         <a th:href="@{'/goods/detail/'+${newGoods.goodsId}}">
@@ -113,7 +114,9 @@
                     </li>
                 </th:block>
             </th:block>
+            -->
             <!-- 未配置则显示默认 -->
+    <!--
             <th:block th:if="${#lists.isEmpty(newGoodses)}">
                 <li>
                     <a href="##">
@@ -157,7 +160,7 @@
                 </li>
             </th:block>
         </ul>
-    </div>
+    </div>-->
 
     <div id="recommend">
         <h2>为你推荐</h2>
