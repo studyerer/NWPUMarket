@@ -26,7 +26,7 @@ public class NWPUMarketCarouselController {
     @GetMapping("/carousels")
     public String carouselPage(HttpServletRequest request) {
         //页面路径设置
-        request.setAttribute("path", "newbee_mall_carousel");
+        request.setAttribute("path", "market_carousel");
         return "admin/market_carousel";
     }
 
