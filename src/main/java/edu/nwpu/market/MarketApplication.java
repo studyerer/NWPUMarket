@@ -6,8 +6,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @MapperScan("edu.nwpu.market.dao")
 @SpringBootApplication
-public class marketApplication {
+public class MarketApplication {
     public static void main(String[] args) {
-        SpringApplication.run(marketApplication.class, args);
+        SpringApplication.run(MarketApplication.class, args);
     }
 }
