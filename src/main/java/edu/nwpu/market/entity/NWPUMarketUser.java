@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 
 import java.util.Date;
 
-public class MallUser {
+public class NWPUMarketUser {
     private Long userId;
 
     private String nickName;
