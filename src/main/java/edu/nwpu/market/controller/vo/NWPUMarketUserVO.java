@@ -31,6 +31,9 @@ public class NWPUMarketUserVO implements Serializable {
 
     }
 
+    public NWPUMarketUserVO(){
+    }
+
     public Long getUserId() {
         return userId;
     }
