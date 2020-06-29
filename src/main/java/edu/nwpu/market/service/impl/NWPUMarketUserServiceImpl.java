@@ -69,7 +69,6 @@ public class NWPUMarketUserServiceImpl implements NWPUMarketUserService {
 
     @Override
     public NWPUMarketUserVO updateUserInfo(MallUser mallUser, HttpSession httpSession) {
-        NWPUMarketUserVO result = null;
         MallUser user = mallUserMapper.selectByPrimaryKey(mallUser.getUserId());
         if (user != null) {
             user.setNickName(mallUser.getNickName());
@@ -80,10 +79,10 @@ public class NWPUMarketUserServiceImpl implements NWPUMarketUserService {
                 user = mallUserMapper.selectByPrimaryKey(mallUser.getUserId());
                 BeanUtil.copyProperties(user, NWPUMarketUserVO);
                 httpSession.setAttribute(Constants.MALL_USER_SESSION_KEY, NWPUMarketUserVO);
-                result = NWPUMarketUserVO;
+                return NWPUMarketUserVO;
             }
         }
-        return result;
+        return null;
     }
 
     @Override
