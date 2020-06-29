@@ -18,6 +18,7 @@ public class NWPUMarketShoppingCartItemVO implements Serializable {
     private String goodsCoverImg;
 
     private Integer sellingPrice;
+    /*test*/
 
     public Long getGoodsId() {
         return goodsId;

@@ -26,16 +26,13 @@ public class ShoppingCartController {
     @GetMapping("/shop-cart")
     public String cartListPage(HttpServletRequest request,
                                HttpSession httpSession) {
+        /*test*/
         //NWPUMarketUserVO user = (NWPUMarketUserVO) httpSession.getAttribute(Constants.MALL_USER_SESSION_KEY);
         NWPUMarketUserVO user = new NWPUMarketUserVO((long)1,"a","a","a","a",1);
         int itemsTotal = 0;
         int priceTotal = 0;
         List<NWPUMarketShoppingCartItemVO> myShoppingCartItems =
-                nwpuMarketShoppingCartService.
-                        getMyShoppingCartItems(
-                                user.
-                                        getUserId()
-                        );
+                nwpuMarketShoppingCartService.getMyShoppingCartItems(user.getUserId());
         if (!CollectionUtils.isEmpty(myShoppingCartItems)) {
             //订单项总数
             itemsTotal = myShoppingCartItems.stream().mapToInt(NWPUMarketShoppingCartItemVO::getGoodsCount).sum();
