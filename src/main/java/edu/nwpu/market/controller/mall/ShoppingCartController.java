@@ -32,7 +32,7 @@ public class ShoppingCartController {
         List<NWPUMarketShoppingCartItemVO> myShoppingCartItems =
                 nwpuMarketShoppingCartService.
                         getMyShoppingCartItems(
-                                
+
                                 user.getUserId()
                         );
         if (!CollectionUtils.isEmpty(myShoppingCartItems)) {
