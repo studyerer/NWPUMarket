@@ -16,7 +16,6 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.util.*;
 
-
 @Controller
 @RequestMapping("/admin")
 public class NWPUMarketGoodsCategoryController {
@@ -29,11 +28,11 @@ public class NWPUMarketGoodsCategoryController {
         if (categoryLevel == null || categoryLevel < 1 || categoryLevel > 3) {
             return "error/error_5xx";
         }
-        request.setAttribute("path", "newbee_mall_category");
+        request.setAttribute("path", "nwpu_market_category");
         request.setAttribute("parentId", parentId);
         request.setAttribute("backParentId", backParentId);
         request.setAttribute("categoryLevel", categoryLevel);
-        return "admin/newbee_mall_category";
+        return "admin/nwpu_market_category";
     }
 
     /**
