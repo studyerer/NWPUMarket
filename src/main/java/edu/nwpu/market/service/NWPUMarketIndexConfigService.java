@@ -5,6 +5,8 @@ import edu.nwpu.market.entity.IndexConfig;
 import edu.nwpu.market.util.PageQueryUtil;
 import edu.nwpu.market.util.PageResult;
 
+
+
 import java.util.List;
 
 public interface NWPUMarketIndexConfigService {

@@ -1,11 +1,6 @@
 package edu.nwpu.market.util;
 
-import edu.nwpu.market.util.Result;
 import org.springframework.util.StringUtils;
-
-/**
- * 响应结果生成工具
- */
 public class ResultGenerator {
     private static final String DEFAULT_SUCCESS_MESSAGE = "SUCCESS";
     private static final String DEFAULT_FAIL_MESSAGE = "FAIL";

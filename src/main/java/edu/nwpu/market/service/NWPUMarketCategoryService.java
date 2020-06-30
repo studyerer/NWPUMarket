@@ -1,10 +1,12 @@
 package edu.nwpu.market.service;
 
+
 import edu.nwpu.market.controller.vo.NWPUMarketIndexCategoryVO;
 import edu.nwpu.market.controller.vo.SearchPageCategoryVO;
 import edu.nwpu.market.entity.GoodsCategory;
 import edu.nwpu.market.util.PageQueryUtil;
 import edu.nwpu.market.util.PageResult;
+
 
 import java.util.List;
 
