@@ -17,6 +17,8 @@ public enum ServiceResultEnum {
 
     LOGIN_VERIFY_CODE_NULL("请输入验证码！"),
 
+    LOGIN_VERIFY_CODE_ERROR("验证码错误！"),
+
     GOODS_NOT_EXIST("商品不存在！"),
 
     SHOPPING_CART_ITEM_LIMIT_NUMBER_ERROR("超出单个商品的最大购买数量！"),

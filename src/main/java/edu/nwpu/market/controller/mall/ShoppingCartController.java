@@ -27,9 +27,8 @@ public class ShoppingCartController {
     public String cartListPage(HttpServletRequest request,
                                HttpSession httpSession) {
         /*test*/
-        //NWPUMarketUserVO user = (NWPUMarketUserVO) httpSession.getAttribute(Constants.MALL_USER_SESSION_KEY);
-        NWPUMarketUserVO user = new NWPUMarketUserVO((long)1,"a","a","a","a",1);
-        httpSession.setAttribute("q",user);
+        NWPUMarketUserVO user = (NWPUMarketUserVO) httpSession.getAttribute(Constants.MALL_USER_SESSION_KEY);
+        //NWPUMarketUserVO user = new NWPUMarketUserVO((long)1,"a","a","a","a",1);
         int itemsTotal = 0;
         int priceTotal = 0;
         List<NWPUMarketShoppingCartItemVO> myShoppingCartItems =
@@ -74,9 +73,7 @@ public class ShoppingCartController {
     @ResponseBody
     public Result updateNWPUMarketShoppingCartItem(@RequestBody NWPUMarketShoppingCartItem nwpuMarketShoppingCartItem,
                                                    HttpSession httpSession) {
-        /*test*/
-        //NWPUMarketUserVO user = (NWPUMarketUserVO) httpSession.getAttribute(Constants.MALL_USER_SESSION_KEY);
-        NWPUMarketUserVO user = new NWPUMarketUserVO((long)1,"a","a","a","a",1);
+        NWPUMarketUserVO user = (NWPUMarketUserVO) httpSession.getAttribute(Constants.MALL_USER_SESSION_KEY);
         nwpuMarketShoppingCartItem.setUserId(user.getUserId());
         //todo 判断数量
         String saveResult = nwpuMarketShoppingCartService.updateNWPUMarketCartItem(nwpuMarketShoppingCartItem);
@@ -106,9 +103,7 @@ public class ShoppingCartController {
     public String settlePage(HttpServletRequest request,
                              HttpSession httpSession) {
         int priceTotal = 0;
-        /*test*/
-        //NWPUMarketUserVO user = (NWPUMarketUserVO) httpSession.getAttribute(Constants.MALL_USER_SESSION_KEY);
-        NWPUMarketUserVO user = new NWPUMarketUserVO((long)1,"a","a","a","a",1);
+        NWPUMarketUserVO user = (NWPUMarketUserVO) httpSession.getAttribute(Constants.MALL_USER_SESSION_KEY);
         List<NWPUMarketShoppingCartItemVO> myShoppingCartItems = nwpuMarketShoppingCartService.getMyShoppingCartItems(user.getUserId());
         if (CollectionUtils.isEmpty(myShoppingCartItems)) {
             //无数据则不跳转至结算页
