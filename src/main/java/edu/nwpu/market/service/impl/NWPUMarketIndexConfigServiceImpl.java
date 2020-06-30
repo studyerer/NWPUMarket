@@ -1,4 +1,4 @@
-package edu.nwpu.market.service.impl;
+package edu.nwpu.market.service.Impl;
 
 import edu.nwpu.market.common.ServiceResultEnum;
 import edu.nwpu.market.controller.vo.NWPUMarketIndexConfigGoodsVO;
@@ -68,20 +68,20 @@ public class NWPUMarketIndexConfigServiceImpl implements NWPUMarketIndexConfigSe
         List<IndexConfig> indexConfigs = indexConfigMapper.findIndexConfigsByTypeAndNum(configType, number);
         if (!CollectionUtils.isEmpty(indexConfigs)) {
             //取出所有的goodsId
-            List<Long> goodsIds = indexConfigs.stream().map(IndexConfig::getGoodsId).collect(Collectors.toList());//获取每一个对应商品的ID
-            List<NWPUMarketGoods> NWPUMarketGoods = goodsMapper.selectByPrimaryKeys(goodsIds);//选出上面的得到ID对应的商品
-            nwpuMarketIndexConfigGoodsVOS = BeanUtil.copyList(NWPUMarketGoods, NWPUMarketIndexConfigGoodsVO.class);//DAO数据和VO数据拷贝
-            for (NWPUMarketIndexConfigGoodsVO nwpuMarketIndexConfigGoodsVO : nwpuMarketIndexConfigGoodsVOS) {
-                String goodsName = nwpuMarketIndexConfigGoodsVO.getGoodsName();
-                String goodsIntro = nwpuMarketIndexConfigGoodsVO.getGoodsIntro();
+            List<Long> goodsIds = indexConfigs.stream().map(IndexConfig::getGoodsId).collect(Collectors.toList());
+            List<NWPUMarketGoods>  nwpuMarketGoods = goodsMapper.selectByPrimaryKeys(goodsIds);
+           nwpuMarketIndexConfigGoodsVOS = BeanUtil.copyList(nwpuMarketGoods,NWPUMarketIndexConfigGoodsVO.class);
+            for (NWPUMarketIndexConfigGoodsVO nwpuMarketIndexConfigGoodsVO:nwpuMarketIndexConfigGoodsVOS) {
+                String goodsName =nwpuMarketIndexConfigGoodsVO.getGoodsName();
+                String goodsIntro =nwpuMarketIndexConfigGoodsVO.getGoodsIntro();
                 // 字符串过长导致文字超出的问题
                 if (goodsName.length() > 30) {
                     goodsName = goodsName.substring(0, 30) + "...";
-                    nwpuMarketIndexConfigGoodsVO.setGoodsName(goodsName);
+                   nwpuMarketIndexConfigGoodsVO.setGoodsName(goodsName);
                 }
                 if (goodsIntro.length() > 22) {
                     goodsIntro = goodsIntro.substring(0, 22) + "...";
-                    nwpuMarketIndexConfigGoodsVO.setGoodsIntro(goodsIntro);
+                   nwpuMarketIndexConfigGoodsVO.setGoodsIntro(goodsIntro);
                 }
             }
         }
