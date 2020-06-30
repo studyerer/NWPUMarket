@@ -21,7 +21,7 @@ import java.util.Objects;
 public class NWPUMarketCarouselController {
 
     @Resource
-    NWPUMarketCarouselService NWPUMarketCarouselService;
+    NWPUMarketCarouselService nwpuMarketCarouselService;
     //标注到carousels页面，控制carousels的相关操作
     @GetMapping("/carousels")
     public String carouselPage(HttpServletRequest request) {
@@ -42,7 +42,7 @@ public class NWPUMarketCarouselController {
         }
         //参数正确，新建
         PageQueryUtil pageUtil = new PageQueryUtil(params);
-        return ResultGenerator.genSuccessResult(NWPUMarketCarouselService.getCarouselPage(pageUtil));
+        return ResultGenerator.genSuccessResult(nwpuMarketCarouselService.getCarouselPage(pageUtil));
     }
 
     /**
@@ -57,7 +57,7 @@ public class NWPUMarketCarouselController {
             return ResultGenerator.genFailResult("参数异常！");
         }
         //调用newBeeMallCarouselService添加carousel
-        String result = NWPUMarketCarouselService.saveCarousel(carousel);
+        String result = nwpuMarketCarouselService.saveCarousel(carousel);
         if (ServiceResultEnum.SUCCESS.getResult().equals(result)) {
             return ResultGenerator.genSuccessResult();
         } else {
@@ -79,7 +79,7 @@ public class NWPUMarketCarouselController {
             return ResultGenerator.genFailResult("参数异常！");
         }
         //调用newBeeMallCarouselService修改carousel
-        String result = NWPUMarketCarouselService.updateCarousel(carousel);
+        String result = nwpuMarketCarouselService.updateCarousel(carousel);
         if (ServiceResultEnum.SUCCESS.getResult().equals(result)) {
             return ResultGenerator.genSuccessResult();
         } else {
@@ -94,7 +94,7 @@ public class NWPUMarketCarouselController {
     @ResponseBody
     public Result info(@PathVariable("id") Integer id) {
         //通过Id显示相关carousel详情
-        Carousel carousel = NWPUMarketCarouselService.getCarouselById(id);
+        Carousel carousel = nwpuMarketCarouselService.getCarouselById(id);
         if (carousel == null) {
             return ResultGenerator.genFailResult(ServiceResultEnum.DATA_NOT_EXIST.getResult());
         }
@@ -111,7 +111,7 @@ public class NWPUMarketCarouselController {
             return ResultGenerator.genFailResult("参数异常！");
         }
         //根据id删除caroursels
-        if (NWPUMarketCarouselService.deleteBatch(ids)) {
+        if (nwpuMarketCarouselService.deleteBatch(ids)) {
             return ResultGenerator.genSuccessResult();
         } else {
             return ResultGenerator.genFailResult("删除失败");

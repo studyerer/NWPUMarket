@@ -33,9 +33,9 @@ import java.util.Objects;
 public class NWPUMarketGoodsController {
 
     @Resource
-    private NWPUMarketGoodsService NWPUMarketGoodsService;
+    private NWPUMarketGoodsService nwpuMarketGoodsService;
     @Resource
-    private NWPUMarketCategoryService NWPUMarketCategoryService;
+    private NWPUMarketCategoryService nwpuMarketCategoryService;
 
     @GetMapping("/goods")
     public String goodsPage(HttpServletRequest request) {
@@ -47,13 +47,13 @@ public class NWPUMarketGoodsController {
     public String edit(HttpServletRequest request) {
         request.setAttribute("path", "edit");
         //查询所有的一级分类
-        List<GoodsCategory> firstLevelCategories = NWPUMarketCategoryService.selectByLevelAndParentIdsAndNumber(Collections.singletonList(0L), NWPUMarketCategoryLevelEnum.LEVEL_ONE.getLevel());
+        List<GoodsCategory> firstLevelCategories = nwpuMarketCategoryService.selectByLevelAndParentIdsAndNumber(Collections.singletonList(0L), NWPUMarketCategoryLevelEnum.LEVEL_ONE.getLevel());
         if (!CollectionUtils.isEmpty(firstLevelCategories)) {
             //查询一级分类列表中第一个实体的所有二级分类
-            List<GoodsCategory> secondLevelCategories = NWPUMarketCategoryService.selectByLevelAndParentIdsAndNumber(Collections.singletonList(firstLevelCategories.get(0).getCategoryId()), NWPUMarketCategoryLevelEnum.LEVEL_TWO.getLevel());
+            List<GoodsCategory> secondLevelCategories = nwpuMarketCategoryService.selectByLevelAndParentIdsAndNumber(Collections.singletonList(firstLevelCategories.get(0).getCategoryId()), NWPUMarketCategoryLevelEnum.LEVEL_TWO.getLevel());
             if (!CollectionUtils.isEmpty(secondLevelCategories)) {
                 //查询二级分类列表中第一个实体的所有三级分类
-                List<GoodsCategory> thirdLevelCategories = NWPUMarketCategoryService.selectByLevelAndParentIdsAndNumber(Collections.singletonList(secondLevelCategories.get(0).getCategoryId()), NWPUMarketCategoryLevelEnum.LEVEL_THREE.getLevel());
+                List<GoodsCategory> thirdLevelCategories = nwpuMarketCategoryService.selectByLevelAndParentIdsAndNumber(Collections.singletonList(secondLevelCategories.get(0).getCategoryId()), NWPUMarketCategoryLevelEnum.LEVEL_THREE.getLevel());
                 request.setAttribute("firstLevelCategories", firstLevelCategories);
                 request.setAttribute("secondLevelCategories", secondLevelCategories);
                 request.setAttribute("thirdLevelCategories", thirdLevelCategories);
@@ -67,27 +67,27 @@ public class NWPUMarketGoodsController {
     @GetMapping("/goods/edit/{goodsId}")
     public String edit(HttpServletRequest request, @PathVariable("goodsId") Long goodsId) {
         request.setAttribute("path", "edit");
-        NWPUMarketGoods NWPUMarketGoods = NWPUMarketGoodsService.getNWPUMarketGoodsById(goodsId);
-        if (NWPUMarketGoods == null) {
+        NWPUMarketGoods nwpuMarketGoods = nwpuMarketGoodsService.getNWPUMarketGoodsById(goodsId);
+        if (nwpuMarketGoods == null) {
             return "error/error_400";
         }
-        if (NWPUMarketGoods.getGoodsCategoryId() > 0) {
-            if (NWPUMarketGoods.getGoodsCategoryId() != null || NWPUMarketGoods.getGoodsCategoryId() > 0) {
+        if (nwpuMarketGoods.getGoodsCategoryId() > 0) {
+            if (nwpuMarketGoods.getGoodsCategoryId() != null || nwpuMarketGoods.getGoodsCategoryId() > 0) {
                 //有分类字段则查询相关分类数据返回给前端以供分类的三级联动显示
-                GoodsCategory currentGoodsCategory = NWPUMarketCategoryService.getGoodsCategoryById(NWPUMarketGoods.getGoodsCategoryId());
+                GoodsCategory currentGoodsCategory = nwpuMarketCategoryService.getGoodsCategoryById(nwpuMarketGoods.getGoodsCategoryId());
                 //商品表中存储的分类id字段为三级分类的id，不为三级分类则是错误数据
                 if (currentGoodsCategory != null && currentGoodsCategory.getCategoryLevel() == NWPUMarketCategoryLevelEnum.LEVEL_THREE.getLevel()) {
                     //查询所有的一级分类
-                    List<GoodsCategory> firstLevelCategories = NWPUMarketCategoryService.selectByLevelAndParentIdsAndNumber(Collections.singletonList(0L), NWPUMarketCategoryLevelEnum.LEVEL_ONE.getLevel());
+                    List<GoodsCategory> firstLevelCategories = nwpuMarketCategoryService.selectByLevelAndParentIdsAndNumber(Collections.singletonList(0L), NWPUMarketCategoryLevelEnum.LEVEL_ONE.getLevel());
                     //根据parentId查询当前parentId下所有的三级分类
-                    List<GoodsCategory> thirdLevelCategories = NWPUMarketCategoryService.selectByLevelAndParentIdsAndNumber(Collections.singletonList(currentGoodsCategory.getParentId()), NWPUMarketCategoryLevelEnum.LEVEL_THREE.getLevel());
+                    List<GoodsCategory> thirdLevelCategories = nwpuMarketCategoryService.selectByLevelAndParentIdsAndNumber(Collections.singletonList(currentGoodsCategory.getParentId()), NWPUMarketCategoryLevelEnum.LEVEL_THREE.getLevel());
                     //查询当前三级分类的父级二级分类
-                    GoodsCategory secondCategory = NWPUMarketCategoryService.getGoodsCategoryById(currentGoodsCategory.getParentId());
+                    GoodsCategory secondCategory = nwpuMarketCategoryService.getGoodsCategoryById(currentGoodsCategory.getParentId());
                     if (secondCategory != null) {
                         //根据parentId查询当前parentId下所有的二级分类
-                        List<GoodsCategory> secondLevelCategories = NWPUMarketCategoryService.selectByLevelAndParentIdsAndNumber(Collections.singletonList(secondCategory.getParentId()), NWPUMarketCategoryLevelEnum.LEVEL_TWO.getLevel());
+                        List<GoodsCategory> secondLevelCategories = nwpuMarketCategoryService.selectByLevelAndParentIdsAndNumber(Collections.singletonList(secondCategory.getParentId()), NWPUMarketCategoryLevelEnum.LEVEL_TWO.getLevel());
                         //查询当前二级分类的父级一级分类
-                        GoodsCategory firestCategory = NWPUMarketCategoryService.getGoodsCategoryById(secondCategory.getParentId());
+                        GoodsCategory firestCategory = nwpuMarketCategoryService.getGoodsCategoryById(secondCategory.getParentId());
                         if (firestCategory != null) {
                             //所有分类数据都得到之后放到request对象中供前端读取
                             request.setAttribute("firstLevelCategories", firstLevelCategories);
@@ -101,22 +101,22 @@ public class NWPUMarketGoodsController {
                 }
             }
         }
-        if (NWPUMarketGoods.getGoodsCategoryId() == 0) {
+        if (nwpuMarketGoods.getGoodsCategoryId() == 0) {
             //查询所有的一级分类
-            List<GoodsCategory> firstLevelCategories = NWPUMarketCategoryService.selectByLevelAndParentIdsAndNumber(Collections.singletonList(0L), NWPUMarketCategoryLevelEnum.LEVEL_ONE.getLevel());
+            List<GoodsCategory> firstLevelCategories = nwpuMarketCategoryService.selectByLevelAndParentIdsAndNumber(Collections.singletonList(0L), NWPUMarketCategoryLevelEnum.LEVEL_ONE.getLevel());
             if (!CollectionUtils.isEmpty(firstLevelCategories)) {
                 //查询一级分类列表中第一个实体的所有二级分类
-                List<GoodsCategory> secondLevelCategories = NWPUMarketCategoryService.selectByLevelAndParentIdsAndNumber(Collections.singletonList(firstLevelCategories.get(0).getCategoryId()), NWPUMarketCategoryLevelEnum.LEVEL_TWO.getLevel());
+                List<GoodsCategory> secondLevelCategories = nwpuMarketCategoryService.selectByLevelAndParentIdsAndNumber(Collections.singletonList(firstLevelCategories.get(0).getCategoryId()), NWPUMarketCategoryLevelEnum.LEVEL_TWO.getLevel());
                 if (!CollectionUtils.isEmpty(secondLevelCategories)) {
                     //查询二级分类列表中第一个实体的所有三级分类
-                    List<GoodsCategory> thirdLevelCategories = NWPUMarketCategoryService.selectByLevelAndParentIdsAndNumber(Collections.singletonList(secondLevelCategories.get(0).getCategoryId()), NWPUMarketCategoryLevelEnum.LEVEL_THREE.getLevel());
+                    List<GoodsCategory> thirdLevelCategories = nwpuMarketCategoryService.selectByLevelAndParentIdsAndNumber(Collections.singletonList(secondLevelCategories.get(0).getCategoryId()), NWPUMarketCategoryLevelEnum.LEVEL_THREE.getLevel());
                     request.setAttribute("firstLevelCategories", firstLevelCategories);
                     request.setAttribute("secondLevelCategories", secondLevelCategories);
                     request.setAttribute("thirdLevelCategories", thirdLevelCategories);
                 }
             }
         }
-        request.setAttribute("goods", NWPUMarketGoods);
+        request.setAttribute("goods", nwpuMarketGoods);
         request.setAttribute("path", "goods-edit");
         return "admin/market_goods_edit";
     }
@@ -131,7 +131,7 @@ public class NWPUMarketGoodsController {
             return ResultGenerator.genFailResult("参数异常！");
         }
         PageQueryUtil pageUtil = new PageQueryUtil(params);
-        return ResultGenerator.genSuccessResult(NWPUMarketGoodsService.getNWPUMarketGoodsPage(pageUtil));
+        return ResultGenerator.genSuccessResult(nwpuMarketGoodsService.getNWPUMarketGoodsPage(pageUtil));
     }
 
     /**
@@ -152,7 +152,7 @@ public class NWPUMarketGoodsController {
                 || StringUtils.isEmpty(NWPUMarketGoods.getGoodsDetailContent())) {
             return ResultGenerator.genFailResult("参数异常！");
         }
-        String result = NWPUMarketGoodsService.saveNWPUMarketGoods(NWPUMarketGoods);
+        String result = nwpuMarketGoodsService.saveNWPUMarketGoods(NWPUMarketGoods);
         if (ServiceResultEnum.SUCCESS.getResult().equals(result)) {
             return ResultGenerator.genSuccessResult();
         } else {
@@ -180,7 +180,7 @@ public class NWPUMarketGoodsController {
                 || StringUtils.isEmpty(NWPUMarketGoods.getGoodsDetailContent())) {
             return ResultGenerator.genFailResult("参数异常！");
         }
-        String result = NWPUMarketGoodsService.updateNWPUMarketGoods(NWPUMarketGoods);
+        String result = nwpuMarketGoodsService.updateNWPUMarketGoods(NWPUMarketGoods);
         if (ServiceResultEnum.SUCCESS.getResult().equals(result)) {
             return ResultGenerator.genSuccessResult();
         } else {
@@ -194,7 +194,7 @@ public class NWPUMarketGoodsController {
     @GetMapping("/goods/info/{id}")
     @ResponseBody
     public Result info(@PathVariable("id") Long id) {
-        NWPUMarketGoods goods = NWPUMarketGoodsService.getNWPUMarketGoodsById(id);
+        NWPUMarketGoods goods = nwpuMarketGoodsService.getNWPUMarketGoodsById(id);
         if (goods == null) {
             return ResultGenerator.genFailResult(ServiceResultEnum.DATA_NOT_EXIST.getResult());
         }
@@ -213,7 +213,7 @@ public class NWPUMarketGoodsController {
         if (sellStatus != Constants.SELL_STATUS_UP && sellStatus != Constants.SELL_STATUS_DOWN) {
             return ResultGenerator.genFailResult("状态异常！");
         }
-        if (NWPUMarketGoodsService.batchUpdateSellStatus(ids, sellStatus)) {
+        if (nwpuMarketGoodsService.batchUpdateSellStatus(ids, sellStatus)) {
             return ResultGenerator.genSuccessResult();
         } else {
             return ResultGenerator.genFailResult("修改失败");
