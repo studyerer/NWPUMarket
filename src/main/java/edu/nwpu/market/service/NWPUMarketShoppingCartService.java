@@ -10,40 +10,40 @@ public interface NWPUMarketShoppingCartService {
     /**
      * 保存商品至购物车中
      *
-     * @param NWPUMarketShoppingCartItem
+     * @param nwpuMarketShoppingCartItem
      * @return
      */
-    String saveNWPUMarketCartItem(NWPUMarketShoppingCartItem NWPUMarketShoppingCartItem);
+    String saveNWPUMarketCartItem(NWPUMarketShoppingCartItem nwpuMarketShoppingCartItem);
 
     /**
      * 修改购物车中的属性
      *
-     * @param NWPUMarketShoppingCartItem
+     * @param nwpuMarketShoppingCartItem
      * @return
      */
-    String updateNWPUMarketCartItem(NWPUMarketShoppingCartItem NWPUMarketShoppingCartItem);
+    String updateNWPUMarketCartItem(NWPUMarketShoppingCartItem nwpuMarketShoppingCartItem);
 
     /**
      * 获取购物项详情
      *
-     * @param NWPUMarketShoppingCartItemId
+     * @param nwpuMarketShoppingCartItem
      * @return
      */
-    NWPUMarketShoppingCartItem getNWPUMarketCartItemById(Long NWPUMarketShoppingCartItemId);
+    NWPUMarketShoppingCartItem getNWPUMarketCartItemById(Long nwpuMarketShoppingCartItem);
 
     /**
      * 删除购物车中的商品
      *
-     * @param NWPUMarketShoppingCartItemId
+     * @param nwpuMarketShoppingCartItem
      * @return
      */
-    Boolean deleteById(Long NWPUMarketShoppingCartItemId);
+    Boolean deleteById(Long nwpuMarketShoppingCartItem);
 
     /**
      * 获取我的购物车中的列表数据
      *
-     * @param NWPUMarketUserId
+     * @param nwpuMarketUserId
      * @return
      */
-    List<NWPUMarketShoppingCartItemVO> getMyShoppingCartItems(Long NWPUMarketUserId);
+    List<NWPUMarketShoppingCartItemVO> getMyShoppingCartItems(Long nwpuMarketUserId);
 }

@@ -56,8 +56,8 @@ public class NWPUMarketShoppingCartServiceImpl implements NWPUMarketShoppingCart
 
     @Override
     public String updateNWPUMarketCartItem(NWPUMarketShoppingCartItem NWPUMarketShoppingCartItem) {
-        NWPUMarketShoppingCartItem NWPUMarketShoppingCartItemUpdate = NWPUMarketShoppingCartItemMapper.selectByPrimaryKey(NWPUMarketShoppingCartItem.getCartItemId());
-        if (NWPUMarketShoppingCartItemUpdate == null) {
+        NWPUMarketShoppingCartItem nwpuMarketShoppingCartItemUpdate = NWPUMarketShoppingCartItemMapper.selectByPrimaryKey(NWPUMarketShoppingCartItem.getCartItemId());
+        if (nwpuMarketShoppingCartItemUpdate == null) {
             return ServiceResultEnum.DATA_NOT_EXIST.getResult();
         }
         //超出最大数量
@@ -66,57 +66,57 @@ public class NWPUMarketShoppingCartServiceImpl implements NWPUMarketShoppingCart
         }
         //todo 数量相同不会进行修改
         //todo userId不同不能修改
-        NWPUMarketShoppingCartItemUpdate.setGoodsCount(NWPUMarketShoppingCartItem.getGoodsCount());
-        NWPUMarketShoppingCartItemUpdate.setUpdateTime(new Date());
+        nwpuMarketShoppingCartItemUpdate.setGoodsCount(NWPUMarketShoppingCartItem.getGoodsCount());
+        nwpuMarketShoppingCartItemUpdate.setUpdateTime(new Date());
         //保存记录
-        if (NWPUMarketShoppingCartItemMapper.updateByPrimaryKeySelective(NWPUMarketShoppingCartItemUpdate) > 0) {
+        if (NWPUMarketShoppingCartItemMapper.updateByPrimaryKeySelective(nwpuMarketShoppingCartItemUpdate) > 0) {
             return ServiceResultEnum.SUCCESS.getResult();
         }
         return ServiceResultEnum.DB_ERROR.getResult();
     }
 
     @Override
-    public NWPUMarketShoppingCartItem getNWPUMarketCartItemById(Long NWPUMarketShoppingCartItemId) {
-        return NWPUMarketShoppingCartItemMapper.selectByPrimaryKey(NWPUMarketShoppingCartItemId);
+    public NWPUMarketShoppingCartItem getNWPUMarketCartItemById(Long nwpuMarketShoppingCartItemId) {
+        return NWPUMarketShoppingCartItemMapper.selectByPrimaryKey(nwpuMarketShoppingCartItemId);
     }
 
     @Override
-    public Boolean deleteById(Long NWPUMarketShoppingCartItemId) {
+    public Boolean deleteById(Long nwpuMarketShoppingCartItemId) {
         //todo userId不同不能删除
-        return NWPUMarketShoppingCartItemMapper.deleteByPrimaryKey(NWPUMarketShoppingCartItemId) > 0;
+        return NWPUMarketShoppingCartItemMapper.deleteByPrimaryKey(nwpuMarketShoppingCartItemId) > 0;
     }
 
     @Override
-    public List<NWPUMarketShoppingCartItemVO> getMyShoppingCartItems(Long NWPUMarketUserId) {
-        List<NWPUMarketShoppingCartItemVO> NWPUMarketShoppingCartItemVOS = new ArrayList<>();
-        List<NWPUMarketShoppingCartItem> NWPUMarketShoppingCartItems = NWPUMarketShoppingCartItemMapper.selectByUserId(NWPUMarketUserId, Constants.SHOPPING_CART_ITEM_TOTAL_NUMBER);
-        if (!CollectionUtils.isEmpty(NWPUMarketShoppingCartItems)) {
+    public List<NWPUMarketShoppingCartItemVO> getMyShoppingCartItems(Long nwpuMarketUserId) {
+        List<NWPUMarketShoppingCartItemVO> nwpuMarketShoppingCartItemVOS = new ArrayList<>();
+        List<NWPUMarketShoppingCartItem> nwpuMarketShoppingCartItems = NWPUMarketShoppingCartItemMapper.selectByUserId(nwpuMarketUserId, Constants.SHOPPING_CART_ITEM_TOTAL_NUMBER);
+        if (!CollectionUtils.isEmpty(nwpuMarketShoppingCartItems)) {
             //查询商品信息并做数据转换
-            List<Long> NWPUMarketGoodsIds = NWPUMarketShoppingCartItems.stream().map(NWPUMarketShoppingCartItem::getGoodsId).collect(Collectors.toList());
-            List<NWPUMarketGoods> marketGoods = NWPUMarketGoodsMapper.selectByPrimaryKeys(NWPUMarketGoodsIds);
-            Map<Long, NWPUMarketGoods> NWPUMarketGoodsMap = new HashMap<>();
+            List<Long> nwpuMarketGoodsIds = nwpuMarketShoppingCartItems.stream().map(NWPUMarketShoppingCartItem::getGoodsId).collect(Collectors.toList());
+            List<NWPUMarketGoods> marketGoods = NWPUMarketGoodsMapper.selectByPrimaryKeys(nwpuMarketGoodsIds);
+            Map<Long, NWPUMarketGoods> nwpuMarketGoodsMap = new HashMap<>();
             if (!CollectionUtils.isEmpty(marketGoods)) {
-                NWPUMarketGoodsMap = marketGoods.stream().collect(Collectors.toMap(NWPUMarketGoods::getGoodsId,
+                nwpuMarketGoodsMap = marketGoods.stream().collect(Collectors.toMap(NWPUMarketGoods::getGoodsId,
                         Function.identity(),
                         (entity1, entity2) -> entity1));
             }
-            for (NWPUMarketShoppingCartItem NWPUMarketShoppingCartItem : NWPUMarketShoppingCartItems) {
-                NWPUMarketShoppingCartItemVO NWPUMarketShoppingCartItemVO = new NWPUMarketShoppingCartItemVO();
-                BeanUtil.copyProperties(NWPUMarketShoppingCartItem, NWPUMarketShoppingCartItemVO);
-                if (NWPUMarketGoodsMap.containsKey(NWPUMarketShoppingCartItem.getGoodsId())) {
-                    NWPUMarketGoods NWPUMarketGoodsTemp = NWPUMarketGoodsMap.get(NWPUMarketShoppingCartItem.getGoodsId());
-                    NWPUMarketShoppingCartItemVO.setGoodsCoverImg(NWPUMarketGoodsTemp.getGoodsCoverImg());
-                    String goodsName = NWPUMarketGoodsTemp.getGoodsName();
+            for (NWPUMarketShoppingCartItem nwpuMarketShoppingCartItem : nwpuMarketShoppingCartItems) {
+                NWPUMarketShoppingCartItemVO nwpuMarketShoppingCartItemVO = new NWPUMarketShoppingCartItemVO();
+                BeanUtil.copyProperties(nwpuMarketShoppingCartItem, nwpuMarketShoppingCartItemVO);
+                if (nwpuMarketGoodsMap.containsKey(nwpuMarketShoppingCartItem.getGoodsId())) {
+                    NWPUMarketGoods nwpuMarketGoodsTemp = nwpuMarketGoodsMap.get(nwpuMarketShoppingCartItem.getGoodsId());
+                    nwpuMarketShoppingCartItemVO.setGoodsCoverImg(nwpuMarketGoodsTemp.getGoodsCoverImg());
+                    String goodsName = nwpuMarketGoodsTemp.getGoodsName();
                     // 字符串过长导致文字超出的问题
                     if (goodsName.length() > 28) {
                         goodsName = goodsName.substring(0, 28) + "...";
                     }
-                    NWPUMarketShoppingCartItemVO.setGoodsName(goodsName);
-                    NWPUMarketShoppingCartItemVO.setSellingPrice(NWPUMarketGoodsTemp.getSellingPrice());
-                    NWPUMarketShoppingCartItemVOS.add(NWPUMarketShoppingCartItemVO);
+                    nwpuMarketShoppingCartItemVO.setGoodsName(goodsName);
+                    nwpuMarketShoppingCartItemVO.setSellingPrice(nwpuMarketGoodsTemp.getSellingPrice());
+                    nwpuMarketShoppingCartItemVOS.add(nwpuMarketShoppingCartItemVO);
                 }
             }
         }
-        return NWPUMarketShoppingCartItemVOS;
+        return nwpuMarketShoppingCartItemVOS;
     }
 }

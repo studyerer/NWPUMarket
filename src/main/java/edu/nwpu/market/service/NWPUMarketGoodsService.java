@@ -27,10 +27,10 @@ public interface NWPUMarketGoodsService {
     /**
      * 批量新增商品数据
      *
-     * @param NWPUMarketGoodsList
+     * @param nwpuMarketGoodsList
      * @return
      */
-    void batchSaveNWPUMarketGoods(List<NWPUMarketGoods> NWPUMarketGoodsList);
+    void batchSaveNWPUMarketGoods(List<NWPUMarketGoods> nwpuMarketGoodsList);
 
     /**
      * 修改商品信息

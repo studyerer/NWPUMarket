@@ -64,14 +64,14 @@ public class NWPUMarketIndexConfigServiceImpl implements NWPUMarketIndexConfigSe
 
     @Override
     public List<NWPUMarketIndexConfigGoodsVO> getConfigGoodsesForIndex(int configType, int number) {
-        List<NWPUMarketIndexConfigGoodsVO> NWPUMarketIndexConfigGoodsVOS = new ArrayList<>(number);
+        List<NWPUMarketIndexConfigGoodsVO> nwpuMarketIndexConfigGoodsVOS = new ArrayList<>(number);
         List<IndexConfig> indexConfigs = indexConfigMapper.findIndexConfigsByTypeAndNum(configType, number);
         if (!CollectionUtils.isEmpty(indexConfigs)) {
             //取出所有的goodsId
             List<Long> goodsIds = indexConfigs.stream().map(IndexConfig::getGoodsId).collect(Collectors.toList());//获取每一个对应商品的ID
             List<NWPUMarketGoods> NWPUMarketGoods = goodsMapper.selectByPrimaryKeys(goodsIds);//选出上面的得到ID对应的商品
-            NWPUMarketIndexConfigGoodsVOS = BeanUtil.copyList(NWPUMarketGoods, NWPUMarketIndexConfigGoodsVO.class);//DAO数据和VO数据拷贝
-            for (NWPUMarketIndexConfigGoodsVO nwpuMarketIndexConfigGoodsVO : NWPUMarketIndexConfigGoodsVOS) {
+            nwpuMarketIndexConfigGoodsVOS = BeanUtil.copyList(NWPUMarketGoods, NWPUMarketIndexConfigGoodsVO.class);//DAO数据和VO数据拷贝
+            for (NWPUMarketIndexConfigGoodsVO nwpuMarketIndexConfigGoodsVO : nwpuMarketIndexConfigGoodsVOS) {
                 String goodsName = nwpuMarketIndexConfigGoodsVO.getGoodsName();
                 String goodsIntro = nwpuMarketIndexConfigGoodsVO.getGoodsIntro();
                 // 字符串过长导致文字超出的问题
@@ -85,7 +85,7 @@ public class NWPUMarketIndexConfigServiceImpl implements NWPUMarketIndexConfigSe
                 }
             }
         }
-        return NWPUMarketIndexConfigGoodsVOS;
+        return nwpuMarketIndexConfigGoodsVOS;
     }
 
     @Override
