@@ -27,8 +27,8 @@ public class ShoppingCartController {
     public String cartListPage(HttpServletRequest request,
                                HttpSession httpSession) {
         /*test*/
-        //NWPUMarketUserVO user = (NWPUMarketUserVO) httpSession.getAttribute(Constants.MALL_USER_SESSION_KEY);
-        NWPUMarketUserVO user = new NWPUMarketUserVO((long)1,"a","a","a","a",1);
+        NWPUMarketUserVO user = (NWPUMarketUserVO) httpSession.getAttribute(Constants.MALL_USER_SESSION_KEY);
+        //NWPUMarketUserVO user = new NWPUMarketUserVO((long)1,"a","a","a","a",1);
         int itemsTotal = 0;
         int priceTotal = 0;
         List<NWPUMarketShoppingCartItemVO> myShoppingCartItems =

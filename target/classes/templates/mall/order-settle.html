@@ -176,12 +176,13 @@
 <div th:replace="mall/footer::footer-fragment"></div>
 
 <!-- jQuery -->
-<script th:src="@{/admin/plugins/jquery/jquery.min.js}"></script>
+<script th:src="@{/admin/plugins/jquery/jquery.min.js} "></script>
 <script th:src="@{/mall/js/search.js}" type="text/javascript"></script>
 <script th:src="@{/admin/plugins/sweetalert/sweetalert.min.js}"></script>
 <script th:src="@{/mall/js/bootstrap3.js}"></script>
 <script type="text/javascript">
-    $('#saveOrder').click(function () {
+    $("#saveOrder").click(function () {
+        debugger;
         var userAddress = $(".user_address_label").html();
         if (userAddress == '' || userAddress == '无') {
             swal("请填写收货信息", {

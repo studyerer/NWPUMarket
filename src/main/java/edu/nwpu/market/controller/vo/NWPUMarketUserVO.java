@@ -20,7 +20,7 @@ public class NWPUMarketUserVO implements Serializable {
 
     /*test*/
     
-    public NWPUMarketUserVO(Long _userId,String _nickName,String _loginName,
+/*    public NWPUMarketUserVO(Long _userId,String _nickName,String _loginName,
                             String _introduceSign,String _address,int _shopCartItemCount){
         userId = _userId;
         nickName = _nickName;
@@ -29,7 +29,7 @@ public class NWPUMarketUserVO implements Serializable {
         address = _address;
         shopCartItemCount = _shopCartItemCount;
 
-    }
+    }*/
 
     public NWPUMarketUserVO(){
     }
