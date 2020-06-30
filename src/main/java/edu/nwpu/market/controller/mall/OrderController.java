@@ -44,9 +44,7 @@ public class OrderController {
 
     @GetMapping("/orders")
     public String orderListPage(@RequestParam Map<String, Object> params, HttpServletRequest request, HttpSession httpSession) {
-        /*test*/
-        //NWPUMarketUserVO user = (NWPUMarketUserVO) httpSession.getAttribute(Constants.MALL_USER_SESSION_KEY);
-        NWPUMarketUserVO user = new NWPUMarketUserVO((long)1,"a","a","a","a",1);
+        NWPUMarketUserVO user = (NWPUMarketUserVO) httpSession.getAttribute(Constants.MALL_USER_SESSION_KEY);
 
         params.put("userId", user.getUserId());
         if (StringUtils.isEmpty(params.get("page"))) {

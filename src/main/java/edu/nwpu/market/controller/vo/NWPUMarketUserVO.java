@@ -18,19 +18,6 @@ public class NWPUMarketUserVO implements Serializable {
 
     private int shopCartItemCount;
 
-    /*test*/
-    
-/*    public NWPUMarketUserVO(Long _userId,String _nickName,String _loginName,
-                            String _introduceSign,String _address,int _shopCartItemCount){
-        userId = _userId;
-        nickName = _nickName;
-        loginName = _loginName;
-        introduceSign = _introduceSign;
-        address = _address;
-        shopCartItemCount = _shopCartItemCount;
-
-    }*/
-
     public NWPUMarketUserVO(){
     }
 
