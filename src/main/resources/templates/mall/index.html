@@ -6,6 +6,7 @@ d<!DOCTYPE html>
 <header th:replace="mall/header::header-fragment"></header>
 <content id="content">
     <nav th:replace="mall/header::nav-fragment"></nav>
+
     <div id="banner">
         <div class="all-sort-list">
             <th:block th:each="category : ${categories}">
@@ -190,6 +191,7 @@ d<!DOCTYPE html>
                     </li>
                 </th:block>
             </th:block>
+
             <!-- 未配置则显示默认 -->
             <th:block th:if="${#lists.isEmpty(recommendGoodses)}">
                 <li>

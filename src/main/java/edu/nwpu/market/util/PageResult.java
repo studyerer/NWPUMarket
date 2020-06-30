@@ -3,7 +3,10 @@ package edu.nwpu.market.util;
 import java.io.Serializable;
 import java.util.List;
 
-
+/**
+ * 分页工具类
+ *
+ */
 public class PageResult implements Serializable {
 
     //总记录数
