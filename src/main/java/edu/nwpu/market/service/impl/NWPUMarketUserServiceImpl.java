@@ -4,7 +4,7 @@ import edu.nwpu.market.common.Constants;
 import edu.nwpu.market.common.ServiceResultEnum;
 import edu.nwpu.market.controller.vo.NWPUMarketUserVO;
 import edu.nwpu.market.dao.MallUserMapper;
-import edu.nwpu.market.entity.NWPUMarketUser;
+import edu.nwpu.market.entity.MallUser;
 import edu.nwpu.market.service.NWPUMarketUserService;
 import edu.nwpu.market.util.BeanUtil;
 import edu.nwpu.market.util.MD5Util;
