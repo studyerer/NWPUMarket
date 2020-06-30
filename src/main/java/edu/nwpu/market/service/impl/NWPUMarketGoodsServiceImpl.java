@@ -39,9 +39,9 @@ public class NWPUMarketGoodsServiceImpl implements NWPUMarketGoodsService {
     }
 
     @Override
-    public void batchSaveNWPUMarketGoods(List<NWPUMarketGoods> NWPUMarketGoodsList) {
-        if (!CollectionUtils.isEmpty(NWPUMarketGoodsList)) {
-            goodsMapper.batchInsert(NWPUMarketGoodsList);
+    public void batchSaveNWPUMarketGoods(List<NWPUMarketGoods> nwpuMarketGoodsList) {
+        if (!CollectionUtils.isEmpty(nwpuMarketGoodsList)) {
+            goodsMapper.batchInsert(nwpuMarketGoodsList);
         }
     }
 
@@ -72,24 +72,24 @@ public class NWPUMarketGoodsServiceImpl implements NWPUMarketGoodsService {
     public PageResult searchNWPUMarketGoods(PageQueryUtil pageUtil) {
         List<NWPUMarketGoods> goodsList = goodsMapper.findNWPUMarketGoodsListBySearch(pageUtil);
         int total = goodsMapper.getTotalNWPUMarketGoodsBySearch(pageUtil);
-        List<NWPUMarketSearchGoodsVO> NWPUMarketSearchGoodsVOS = new ArrayList<>();
+        List<NWPUMarketSearchGoodsVO> nwpuMarketSearchGoodsVOS = new ArrayList<>();
         if (!CollectionUtils.isEmpty(goodsList)) {
-            NWPUMarketSearchGoodsVOS = BeanUtil.copyList(goodsList, NWPUMarketSearchGoodsVO.class);
-            for (NWPUMarketSearchGoodsVO NWPUMarketSearchGoodsVO : NWPUMarketSearchGoodsVOS) {
-                String goodsName = NWPUMarketSearchGoodsVO.getGoodsName();
-                String goodsIntro = NWPUMarketSearchGoodsVO.getGoodsIntro();
+            nwpuMarketSearchGoodsVOS = BeanUtil.copyList(goodsList, NWPUMarketSearchGoodsVO.class);
+            for (NWPUMarketSearchGoodsVO nwpuMarketSearchGoodsVO : nwpuMarketSearchGoodsVOS) {
+                String goodsName = nwpuMarketSearchGoodsVO.getGoodsName();
+                String goodsIntro = nwpuMarketSearchGoodsVO.getGoodsIntro();
                 // 字符串过长导致文字超出的问题
                 if (goodsName.length() > 28) {
                     goodsName = goodsName.substring(0, 28) + "...";
-                    NWPUMarketSearchGoodsVO.setGoodsName(goodsName);
+                    nwpuMarketSearchGoodsVO.setGoodsName(goodsName);
                 }
                 if (goodsIntro.length() > 30) {
                     goodsIntro = goodsIntro.substring(0, 30) + "...";
-                    NWPUMarketSearchGoodsVO.setGoodsIntro(goodsIntro);
+                    nwpuMarketSearchGoodsVO.setGoodsIntro(goodsIntro);
                 }
             }
         }
-        PageResult pageResult = new PageResult(NWPUMarketSearchGoodsVOS, total, pageUtil.getLimit(), pageUtil.getPage());
+        PageResult pageResult = new PageResult(nwpuMarketSearchGoodsVOS, total, pageUtil.getLimit(), pageUtil.getPage());
         return pageResult;
     }
 }

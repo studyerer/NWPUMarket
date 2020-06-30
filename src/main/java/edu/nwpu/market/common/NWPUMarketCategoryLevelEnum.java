@@ -1,9 +1,5 @@
 package edu.nwpu.market.common;
 
-/**
- 
- * @apiNote 分类级别
- */
 public enum NWPUMarketCategoryLevelEnum {
 
     DEFAULT(0, "ERROR"),
@@ -20,10 +16,10 @@ public enum NWPUMarketCategoryLevelEnum {
         this.name = name;
     }
 
-    public static NWPUMarketCategoryLevelEnum getNewBeeMallOrderStatusEnumByLevel(int level) {
-        for (NWPUMarketCategoryLevelEnum NWPUMarketCategoryLevelEnum : NWPUMarketCategoryLevelEnum.values()) {
-            if (NWPUMarketCategoryLevelEnum.getLevel() == level) {
-                return NWPUMarketCategoryLevelEnum;
+    public static NWPUMarketCategoryLevelEnum getNWPUMarketOrderStatusEnumByLevel(int level) {
+        for (NWPUMarketCategoryLevelEnum nwpuMarketCategoryLevelEnum : NWPUMarketCategoryLevelEnum.values()) {
+            if (nwpuMarketCategoryLevelEnum.getLevel() == level) {
+                return nwpuMarketCategoryLevelEnum;
             }
         }
         return DEFAULT;
