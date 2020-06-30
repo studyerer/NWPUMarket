@@ -82,7 +82,7 @@ public class NWPUMarketCategoryServiceImpl implements NWPUMarketCategoryService 
 
     @Override
     public List<NWPUMarketIndexCategoryVO> getCategoriesForIndex() {
-        List<NWPUMarketIndexCategoryVO> NWPUMarketIndexCategoryVOS = new ArrayList<>();
+        List<NWPUMarketIndexCategoryVO> nwpuMarketIndexCategoryVOS = new ArrayList<>();
         //获取一级分类的固定数量的数据
         List<GoodsCategory> firstLevelCategories = goodsCategoryMapper.selectByLevelAndParentIdsAndNumber(Collections.singletonList(0L), NWPUMarketCategoryLevelEnum.LEVEL_ONE.getLevel(), Constants.INDEX_CATEGORY_NUMBER);
         if (!CollectionUtils.isEmpty(firstLevelCategories)) {
@@ -121,13 +121,13 @@ public class NWPUMarketCategoryServiceImpl implements NWPUMarketCategoryService 
                                 //根据一级分类的id取出secondLevelCategoryVOMap分组中的二级级分类list
                                 List<SecondLevelCategoryVO> tempGoodsCategories = secondLevelCategoryVOMap.get(firstCategory.getCategoryId());
                                 NWPUMarketIndexCategoryVO.setSecondLevelCategoryVOS(tempGoodsCategories);
-                                NWPUMarketIndexCategoryVOS.add(NWPUMarketIndexCategoryVO);
+                                nwpuMarketIndexCategoryVOS.add(NWPUMarketIndexCategoryVO);
                             }
                         }
                     }
                 }
             }
-            return NWPUMarketIndexCategoryVOS;
+            return nwpuMarketIndexCategoryVOS;
         } else {
             return null;
         }
