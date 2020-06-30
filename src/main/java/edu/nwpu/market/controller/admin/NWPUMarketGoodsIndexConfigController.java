@@ -23,7 +23,7 @@ import java.util.Objects;
 public class NWPUMarketGoodsIndexConfigController {
 
     @Resource
-    private NWPUMarketIndexConfigService NWPUMarketIndexConfigService;
+    private NWPUMarketIndexConfigService nwpuMarketIndexConfigService;
 
     /*
     得到配置商品的主页
@@ -46,7 +46,7 @@ public class NWPUMarketGoodsIndexConfigController {
             return ResultGenerator.genFailResult("参数异常！");
         }
         PageQueryUtil pageUtil = new PageQueryUtil(params);
-        return ResultGenerator.genSuccessResult(NWPUMarketIndexConfigService.getConfigsPage(pageUtil));
+        return ResultGenerator.genSuccessResult(nwpuMarketIndexConfigService.getConfigsPage(pageUtil));
     }
 
     /**
@@ -60,7 +60,7 @@ public class NWPUMarketGoodsIndexConfigController {
                 || Objects.isNull(indexConfig.getConfigRank())) {
             return ResultGenerator.genFailResult("参数异常！");
         }
-        String result = NWPUMarketIndexConfigService.saveIndexConfig(indexConfig);
+        String result = nwpuMarketIndexConfigService.saveIndexConfig(indexConfig);
         if (ServiceResultEnum.SUCCESS.getResult().equals(result)) {
             return ResultGenerator.genSuccessResult();
         } else {
@@ -81,7 +81,7 @@ public class NWPUMarketGoodsIndexConfigController {
                 || Objects.isNull(indexConfig.getConfigRank())) {
             return ResultGenerator.genFailResult("参数异常！");
         }
-        String result = NWPUMarketIndexConfigService.updateIndexConfig(indexConfig);
+        String result = nwpuMarketIndexConfigService.updateIndexConfig(indexConfig);
         if (ServiceResultEnum.SUCCESS.getResult().equals(result)) {
             return ResultGenerator.genSuccessResult();
         } else {
@@ -95,7 +95,7 @@ public class NWPUMarketGoodsIndexConfigController {
     @GetMapping("/indexConfigs/info/{id}")
     @ResponseBody
     public Result info(@PathVariable("id") Long id) {
-        IndexConfig config = NWPUMarketIndexConfigService.getIndexConfigById(id);
+        IndexConfig config = nwpuMarketIndexConfigService.getIndexConfigById(id);
         if (config == null) {
             return ResultGenerator.genFailResult("未查询到数据");
         }
@@ -111,7 +111,7 @@ public class NWPUMarketGoodsIndexConfigController {
         if (ids.length < 1) {
             return ResultGenerator.genFailResult("参数异常！");
         }
-        if (NWPUMarketIndexConfigService.deleteBatch(ids)) {
+        if (nwpuMarketIndexConfigService.deleteBatch(ids)) {
             return ResultGenerator.genSuccessResult();
         } else {
             return ResultGenerator.genFailResult("删除失败");
