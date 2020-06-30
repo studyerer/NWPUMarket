@@ -23,7 +23,7 @@ import java.util.stream.Collectors;
 import static java.util.stream.Collectors.groupingBy;
 
 @Service
-public class NWPUMarketCategoryServiceImp implements NWPUMarketCategoryService {
+public class NWPUMarketCategoryServiceImpl implements NWPUMarketCategoryService {
 
     @Autowired
     private GoodsCategoryMapper goodsCategoryMapper;

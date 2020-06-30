@@ -41,7 +41,7 @@ import java.util.stream.Collectors;
 import static java.util.stream.Collectors.groupingBy;
 
 @Service
-public class NWPUMarketOrderServiceImp implements NWPUMarketOrderService {
+public class NWPUMarketOrderServiceImpl implements NWPUMarketOrderService {
 
     @Autowired
     private NWPUMarketOrderMapper NWPUMarketOrderMapper;
