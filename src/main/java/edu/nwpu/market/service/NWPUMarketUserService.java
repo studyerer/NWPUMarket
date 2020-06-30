@@ -1,7 +1,7 @@
 package edu.nwpu.market.service;
 
 import edu.nwpu.market.controller.vo.NWPUMarketUserVO;
-import edu.nwpu.market.entity.MallUser;
+import edu.nwpu.market.entity.NWPUMarketUser;
 import edu.nwpu.market.util.PageQueryUtil;
 import edu.nwpu.market.util.PageResult;
 
@@ -42,10 +42,10 @@ public interface NWPUMarketUserService {
     /**
      * 用户信息修改并返回最新的用户信息
      *
-     * @param mallUser
+     * @param NWPUMarketUser
      * @return
      */
-    NWPUMarketUserVO updateUserInfo(MallUser mallUser, HttpSession httpSession);
+    NWPUMarketUserVO updateUserInfo(NWPUMarketUser NWPUMarketUser, HttpSession httpSession);
 
     /**
      * 用户禁用与解除禁用(0-未锁定 1-已锁定)

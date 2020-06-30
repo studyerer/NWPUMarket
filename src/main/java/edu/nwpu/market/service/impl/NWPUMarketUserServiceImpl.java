@@ -4,7 +4,7 @@ import edu.nwpu.market.common.Constants;
 import edu.nwpu.market.common.ServiceResultEnum;
 import edu.nwpu.market.controller.vo.NWPUMarketUserVO;
 import edu.nwpu.market.dao.MallUserMapper;
-import edu.nwpu.market.entity.MallUser;
+import edu.nwpu.market.entity.NWPUMarketUser;
 import edu.nwpu.market.service.NWPUMarketUserService;
 import edu.nwpu.market.util.BeanUtil;
 import edu.nwpu.market.util.MD5Util;
@@ -24,9 +24,9 @@ public class NWPUMarketUserServiceImpl implements NWPUMarketUserService {
 
     @Override
     public PageResult getNewBeeMallUsersPage(PageQueryUtil pageUtil) {
-        List<MallUser> mallUsers = mallUserMapper.findMallUserList(pageUtil);
+        List<NWPUMarketUser> NWPUMarketUsers = mallUserMapper.findMallUserList(pageUtil);
         int total = mallUserMapper.getTotalMallUsers(pageUtil);
-        PageResult pageResult = new PageResult(mallUsers, total, pageUtil.getLimit(), pageUtil.getPage());
+        PageResult pageResult = new PageResult(NWPUMarketUsers, total, pageUtil.getLimit(), pageUtil.getPage());
         return pageResult;
     }
 
@@ -35,7 +35,7 @@ public class NWPUMarketUserServiceImpl implements NWPUMarketUserService {
         if (mallUserMapper.selectByLoginName(loginName) != null) {
             return ServiceResultEnum.SAME_LOGIN_NAME_EXIST.getResult();
         }
-        MallUser registerUser = new MallUser();
+        NWPUMarketUser registerUser = new NWPUMarketUser();
         registerUser.setLoginName(loginName);
         registerUser.setNickName(loginName);
         String passwordMD5 = MD5Util.MD5Encode(password, "UTF-8");
@@ -48,7 +48,7 @@ public class NWPUMarketUserServiceImpl implements NWPUMarketUserService {
 
     @Override
     public String login(String loginName, String passwordMD5, HttpSession httpSession) {
-        MallUser user = mallUserMapper.selectByLoginNameAndPasswd(loginName, passwordMD5);
+        NWPUMarketUser user = mallUserMapper.selectByLoginNameAndPasswd(loginName, passwordMD5);
         if (user != null && httpSession != null) {
             if (user.getLockedFlag() == 1) {
                 return ServiceResultEnum.LOGIN_USER_LOCKED.getResult();
@@ -68,15 +68,15 @@ public class NWPUMarketUserServiceImpl implements NWPUMarketUserService {
     }
 
     @Override
-    public NWPUMarketUserVO updateUserInfo(MallUser mallUser, HttpSession httpSession) {
-        MallUser user = mallUserMapper.selectByPrimaryKey(mallUser.getUserId());
+    public NWPUMarketUserVO updateUserInfo(NWPUMarketUser NWPUMarketUser, HttpSession httpSession) {
+        NWPUMarketUser user = mallUserMapper.selectByPrimaryKey(NWPUMarketUser.getUserId());
         if (user != null) {
-            user.setNickName(mallUser.getNickName());
-            user.setAddress(mallUser.getAddress());
-            user.setIntroduceSign(mallUser.getIntroduceSign());
+            user.setNickName(NWPUMarketUser.getNickName());
+            user.setAddress(NWPUMarketUser.getAddress());
+            user.setIntroduceSign(NWPUMarketUser.getIntroduceSign());
             if (mallUserMapper.updateByPrimaryKeySelective(user) > 0) {
                 NWPUMarketUserVO NWPUMarketUserVO = new NWPUMarketUserVO();
-                user = mallUserMapper.selectByPrimaryKey(mallUser.getUserId());
+                user = mallUserMapper.selectByPrimaryKey(NWPUMarketUser.getUserId());
                 BeanUtil.copyProperties(user, NWPUMarketUserVO);
                 httpSession.setAttribute(Constants.MALL_USER_SESSION_KEY, NWPUMarketUserVO);
                 return NWPUMarketUserVO;

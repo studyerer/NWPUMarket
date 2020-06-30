@@ -4,7 +4,7 @@ package edu.nwpu.market.controller.mall;
 import edu.nwpu.market.common.Constants;
 import edu.nwpu.market.common.ServiceResultEnum;
 import edu.nwpu.market.controller.vo.NWPUMarketUserVO;
-import edu.nwpu.market.entity.MallUser;
+import edu.nwpu.market.entity.NWPUMarketUser;
 import edu.nwpu.market.service.NWPUMarketUserService;
 import edu.nwpu.market.util.MD5Util;
 import edu.nwpu.market.util.Result;
@@ -111,8 +111,8 @@ public class PersonalController {
 
     @PostMapping("/personal/updateInfo")
     @ResponseBody
-    public Result updateInfo(@RequestBody MallUser MallUser, HttpSession httpSession) {
-        NWPUMarketUserVO mallUserTemp = newBeeMallUserService.updateUserInfo(MallUser, httpSession);
+    public Result updateInfo(@RequestBody NWPUMarketUser NWPUMarketUser, HttpSession httpSession) {
+        NWPUMarketUserVO mallUserTemp = newBeeMallUserService.updateUserInfo(NWPUMarketUser, httpSession);
         if (mallUserTemp == null) {
             Result result = ResultGenerator.genFailResult("修改失败");
             return result;
