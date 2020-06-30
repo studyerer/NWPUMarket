@@ -8,7 +8,67 @@
 <header th:replace="mall/header::header-fragment"></header>
 <!-- nav -->
 <nav th:replace="mall/header::nav-fragment"></nav>
+<!-- jQuery -->
+<script th:src="@{/admin/plugins/jquery/jquery.min.js}"></script>
+<script th:src="@{/mall/js/search.js}" type="text/javascript"></script>
+<script th:src="@{/admin/plugins/sweetalert/sweetalert.min.js}"></script>
+<script th:src="@{/mall/js/bootstrap3.js}"></script>
+<script type="text/javascript">
+    $('#saveOrder').click(function () {
+        alert("aa");
+        var userAddress = $(".user_address_label").html();
+        if (userAddress == '' || userAddress == '无') {
+            swal("请填写收货信息", {
+                icon: "error",
+            });
+            return;
+        }
+        if (userAddress.trim().length < 10) {
+            swal("请输入正确的收货信息", {
+                icon: "error",
+            });
+            return;
+        }
+        window.location.href = '../saveOrder';
+    });
 
+    function openUpdateModal() {
+        $('#personalInfoModal').modal('show');
+    }
+
+    //绑定modal上的保存按钮
+    $('#saveButton').click(function () {
+        var address = $("#address").val();
+        var userId = $("#userId").val();
+        var data = {
+            "userId": userId,
+            "address": address
+        };
+        $.ajax({
+            type: 'POST',//方法类型
+            url: '/personal/updateInfo',
+            contentType: 'application/json',
+            data: JSON.stringify(data),
+            success: function (result) {
+                if (result.resultCode == 200) {
+                    $('#personalInfoModal').modal('hide');
+                    window.location.reload();
+                } else {
+                    $('#personalInfoModal').modal('hide');
+                    swal(result.message, {
+                        icon: "error",
+                    });
+                }
+                ;
+            },
+            error: function () {
+                swal('操作失败', {
+                    icon: "error",
+                });
+            }
+        });
+    });
+</script>
 <!-- personal -->
 <div id="personal">
     <div class="self-info center">
@@ -92,10 +152,15 @@
                                     <tbody>
                                     <tr>
                                         <th>收货地址：</th>
+<!--                                        test-->
                                       <!--  <td class="user_address_label"
                                             th:text="${session.newBeeMallUser.address==''?'无':session.newBeeMallUser.address}">
                                             NWPU
                                         </td>-->
+                                        <td class="user_address_label"
+                                            th:text="${'陕西省西安市西北工业大学'}">
+                                            NWPU
+                                        </td>
                                     </tr>
                                     </tbody>
                                 </table>
@@ -153,11 +218,16 @@
                     <div class="modal-body">
                         <form id="personalInfoForm">
                             <div class="form-group">
-                                <input type="hidden" id="userId" th:value="${session.newBeeMallUser.userId}">
+<!--test-->
+<!--                                <input type="hidden" id="userId" th:value="${session.newBeeMallUser.userId}">-->
+                                <input type="hidden" id="userId" th:value="${1}">
                                 <label for="address" class="control-label">收货地址:</label>
+                                <!--test-->
+<!--                                <input type="text" class="form-control" id="address" name="address"-->
+<!--                                       placeholder="请输入收货地址" th:value="${session.newBeeMallUser.address}"-->
+<!--                                       required="true">-->
                                 <input type="text" class="form-control" id="address" name="address"
-                                       placeholder="请输入收货地址" th:value="${session.newBeeMallUser.address}"
-                                       required="true">
+                                       placeholder="请输入收货地址" th:value="${'陕西省西安市西北工业大学'}" required="true">
                             </div>
                         </form>
                     </div>
@@ -175,65 +245,7 @@
 
 <div th:replace="mall/footer::footer-fragment"></div>
 
-<!-- jQuery -->
-<script th:src="@{/admin/plugins/jquery/jquery.min.js}"></script>
-<script th:src="@{/mall/js/search.js}" type="text/javascript"></script>
-<script th:src="@{/admin/plugins/sweetalert/sweetalert.min.js}"></script>
-<script th:src="@{/mall/js/bootstrap3.js}"></script>
-<script type="text/javascript">
-    $('#saveOrder').click(function () {
-        var userAddress = $(".user_address_label").html();
-        if (userAddress == '' || userAddress == '无') {
-            swal("请填写收货信息", {
-                icon: "error",
-            });
-            return;
-        }
-        if (userAddress.trim().length < 10) {
-            swal("请输入正确的收货信息", {
-                icon: "error",
-            });
-            return;
-        }
-        window.location.href = '../saveOrder';
-    });
 
-    function openUpdateModal() {
-        $('#personalInfoModal').modal('show');
-    }
 
-    //绑定modal上的保存按钮
-    $('#saveButton').click(function () {
-        var address = $("#address").val();
-        var userId = $("#userId").val();
-        var data = {
-            "userId": userId,
-            "address": address
-        };
-        $.ajax({
-            type: 'POST',//方法类型
-            url: '/personal/updateInfo',
-            contentType: 'application/json',
-            data: JSON.stringify(data),
-            success: function (result) {
-                if (result.resultCode == 200) {
-                    $('#personalInfoModal').modal('hide');
-                    window.location.reload();
-                } else {
-                    $('#personalInfoModal').modal('hide');
-                    swal(result.message, {
-                        icon: "error",
-                    });
-                }
-                ;
-            },
-            error: function () {
-                swal('操作失败', {
-                    icon: "error",
-                });
-            }
-        });
-    });
-</script>
 </body>
 </html>
