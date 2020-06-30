@@ -36,7 +36,7 @@
         goods_detail_content,original_price,
         selling_price, stock_num)
         VALUES
-        <foreach collection="newBeeMallGoodsList" item="goods" separator=",">
+        <foreach collection="NWPUMarketGoodsList" item="goods" separator=",">
             (#{goods.goodsName},#{goods.goodsIntro},#{goods.goodsCategoryId},#{goods.goodsCoverImg},#{goods.goodsCarousel},#{goods.goodsDetailContent},#{goods.originalPrice},#{goods.sellingPrice},#{goods.stockNum})
         </foreach>
     </insert>
@@ -61,7 +61,7 @@
             #{id}
         </foreach>
     </update>
-    <select id="findNewBeeMallGoodsList" parameterType="Map" resultMap="BaseResultMap">
+    <select id="findNWPUMarketGoodsList" parameterType="Map" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
         from tb_nwpu_market_goods_info
@@ -85,7 +85,7 @@
         </if>
     </select>
 
-    <select id="findNewBeeMallGoodsListBySearch" parameterType="Map" resultMap="BaseResultMap">
+    <select id="findNWPUMarketGoodsListBySearch" parameterType="Map" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
         from tb_nwpu_market_goods_info
@@ -121,7 +121,7 @@
         </if>
     </select>
 
-    <select id="getTotalNewBeeMallGoodsBySearch" parameterType="Map" resultType="int">
+    <select id="getTotalNWPUMarketGoodsBySearch" parameterType="Map" resultType="int">
         select count(*) from tb_nwpu_market_goods_info
         <where>
             <if test="keyword!=null and keyword!=''">
@@ -150,7 +150,7 @@
         </foreach>
         );
     </select>
-    <select id="getTotalNewBeeMallGoods" parameterType="Map" resultType="int">
+    <select id="getTotalNWPUMarketGoods" parameterType="Map" resultType="int">
         select count(*) from tb_nwpu_market_goods_info
         <where>
             <if test="goodsName!=null and goodsName!=''">
