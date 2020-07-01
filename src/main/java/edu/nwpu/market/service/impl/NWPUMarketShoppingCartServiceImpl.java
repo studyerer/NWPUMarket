@@ -34,12 +34,12 @@ public class NWPUMarketShoppingCartServiceImpl implements NWPUMarketShoppingCart
         if (temp != null) {
             //已存在则修改该记录
             //todo count = tempCount + 1
-            temp.setGoodsCount(NWPUMarketShoppingCartItem.getGoodsCount());
+            temp.setGoodsCount(temp.getGoodsCount()+1);
             return updateNWPUMarketCartItem(temp);
         }
-        NWPUMarketGoods NWPUMarketGoods = NWPUMarketGoodsMapper.selectByPrimaryKey(NWPUMarketShoppingCartItem.getGoodsId());
+        NWPUMarketGoods nwpuMarketGoods = NWPUMarketGoodsMapper.selectByPrimaryKey(NWPUMarketShoppingCartItem.getGoodsId());
         //商品为空
-        if (NWPUMarketGoods == null) {
+        if (nwpuMarketGoods == null) {
             return ServiceResultEnum.GOODS_NOT_EXIST.getResult();
         }
         int totalItem = NWPUMarketShoppingCartItemMapper.selectCountByUserId(NWPUMarketShoppingCartItem.getUserId());
@@ -55,21 +55,27 @@ public class NWPUMarketShoppingCartServiceImpl implements NWPUMarketShoppingCart
     }
 
     @Override
-    public String updateNWPUMarketCartItem(NWPUMarketShoppingCartItem NWPUMarketShoppingCartItem) {
-        NWPUMarketShoppingCartItem NWPUMarketShoppingCartItemUpdate = NWPUMarketShoppingCartItemMapper.selectByPrimaryKey(NWPUMarketShoppingCartItem.getCartItemId());
-        if (NWPUMarketShoppingCartItemUpdate == null) {
+    public String updateNWPUMarketCartItem(NWPUMarketShoppingCartItem nwpuMarketShoppingCartItem) {
+        NWPUMarketShoppingCartItem nwpuMarketShoppingCartItemUpdate = NWPUMarketShoppingCartItemMapper.selectByPrimaryKey(nwpuMarketShoppingCartItem.getCartItemId());
+        if (nwpuMarketShoppingCartItemUpdate == null) {
             return ServiceResultEnum.DATA_NOT_EXIST.getResult();
         }
         //超出最大数量
-        if (NWPUMarketShoppingCartItem.getGoodsCount() > Constants.SHOPPING_CART_ITEM_LIMIT_NUMBER) {
+        if (nwpuMarketShoppingCartItem.getGoodsCount() > Constants.SHOPPING_CART_ITEM_LIMIT_NUMBER) {
             return ServiceResultEnum.SHOPPING_CART_ITEM_LIMIT_NUMBER_ERROR.getResult();
         }
         //todo 数量相同不会进行修改
+        if (nwpuMarketShoppingCartItem.getGoodsCount() == nwpuMarketShoppingCartItemUpdate.getGoodsCount()){
+            return ServiceResultEnum.OPERATE_ERROR.getResult();
+        }
         //todo userId不同不能修改
-        NWPUMarketShoppingCartItemUpdate.setGoodsCount(NWPUMarketShoppingCartItem.getGoodsCount());
-        NWPUMarketShoppingCartItemUpdate.setUpdateTime(new Date());
+        if (nwpuMarketShoppingCartItem.getUserId() != nwpuMarketShoppingCartItemUpdate.getUserId()){
+            return ServiceResultEnum.OPERATE_ERROR.getResult();
+        }
+        nwpuMarketShoppingCartItemUpdate.setGoodsCount(nwpuMarketShoppingCartItem.getGoodsCount());
+        nwpuMarketShoppingCartItemUpdate.setUpdateTime(new Date());
         //保存记录
-        if (NWPUMarketShoppingCartItemMapper.updateByPrimaryKeySelective(NWPUMarketShoppingCartItemUpdate) > 0) {
+        if (NWPUMarketShoppingCartItemMapper.updateByPrimaryKeySelective(nwpuMarketShoppingCartItemUpdate) > 0) {
             return ServiceResultEnum.SUCCESS.getResult();
         }
         return ServiceResultEnum.DB_ERROR.getResult();

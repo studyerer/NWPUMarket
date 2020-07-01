@@ -32,8 +32,8 @@
             </div>
         </div>
         <div class="right fr">
-            <div class="h3 ml20 mt20" th:text="${goodsDetail.goodsName}">NewBeeMall</div>
-            <div class="sub_title mr40 ml20 mt10" th:text="${goodsDetail.goodsIntro}">NewBeeMall</div>
+            <div class="h3 ml20 mt20" th:text="${goodsDetail.goodsName}">NWPUMarket</div>
+            <div class="sub_title mr40 ml20 mt10" th:text="${goodsDetail.goodsIntro}">NWPUMarket</div>
             <div class="item_price mr40 ml20 mt10">
                 <th:block th:text="${goodsDetail.originalPrice}+'.00 元'"></th:block>
                 <del>
@@ -52,15 +52,8 @@
                            target="_blank"><img th:src="@{/mall/image/7d.jpg}">7天无理由</a></dd>
                 </dl>
                 <dl>
-                    <dt>支付</dt>
-                    <dd><a href="##" target="_blank"><img th:src="@{/mall/image/hua.png}">蚂蚁花呗</a><a href="##"
-                                                                                                     target="_blank"><img
-                            th:src="@{/mall/image/card.png}">信用卡支付</a><a href="##" target="_blank"><img
-                            th:src="@{/mall/image/ji.png}">集分宝</a></dd>
-                </dl>
-                <dl>
                     <dt>支持</dt>
-                    <dd>折旧变现，买新更省钱。<a style="float:none;text-decoration: underline;" href="##">详情</a></dd>
+                    <dd>折旧变现，买新更省钱。</dd>
                 </dl>
 
             </div>
@@ -97,9 +90,10 @@
                 if (result.resultCode == 200) {
                     swal({
                         title: "添加成功",
-                        text: "确认框",
                         icon: "success",
-                        buttons: true,
+                        buttons: {
+                            confirm: "确认"
+                        },
                         dangerMode: true,
                     }).then((flag) => {
                             window.location.reload();
